@@ -1,14 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SHF — Onboarding Questions</title>
+  <title>SHF — Perguntas de Onboarding</title>
   <style>
     *{box-sizing:border-box;margin:0;padding:0}
     body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#F5F4F0;color:#2C2C2C;line-height:1.6}
-
-    /* ── HEADER ── */
     header{background:#1C2B3A;color:white;padding:2.5rem 1.5rem 2rem}
     .back{display:inline-flex;align-items:center;gap:.4rem;font-size:.78rem;color:rgba(255,255,255,.55);text-decoration:none;margin-bottom:1.25rem;transition:color .15s}
     .back:hover{color:#D4930A}
@@ -22,15 +20,9 @@
     .badge{display:inline-block;padding:.2rem .65rem;border-radius:999px;font-size:.7rem;font-weight:600}
     .badge-gold{background:rgba(212,147,10,.2);color:#F5C040;border:1px solid rgba(212,147,10,.35)}
     .badge-blue{background:rgba(255,255,255,.1);color:rgba(255,255,255,.8);border:1px solid rgba(255,255,255,.2)}
-
-    /* ── CONTENT ── */
     .content{max-width:720px;margin:0 auto;padding:2rem 1.5rem}
-
-    /* ── INTRO ── */
     .intro-box{background:#E8EEF5;border-left:4px solid #1C2B3A;border-radius:0 8px 8px 0;padding:1rem 1.25rem;margin-bottom:2rem;font-size:.875rem;color:#444;line-height:1.7}
     .intro-box strong{color:#1C2B3A}
-
-    /* ── BLOCK (collapsible) ── */
     .block{background:white;border-radius:10px;box-shadow:0 1px 3px rgba(0,0,0,.07);margin-bottom:1rem;overflow:hidden}
     details{width:100%}
     details[open] summary{border-bottom:1px solid #F0EFEA}
@@ -49,8 +41,6 @@
     .block-meta{font-size:.75rem;color:#aaa;margin-left:auto;padding-left:.5rem;white-space:nowrap}
     .chevron{color:#ccc;font-size:.85rem;margin-left:.25rem;transition:transform .2s}
     details[open] .chevron{transform:rotate(90deg)}
-
-    /* ── QUESTIONS LIST ── */
     .questions{padding:.25rem 0 .75rem}
     .q-item{padding:.875rem 1.25rem;border-bottom:1px solid #F8F7F5}
     .q-item:last-child{border-bottom:none}
@@ -60,22 +50,16 @@
     .q-followup-item{font-size:.8rem;color:#666;padding:.15rem 0;display:flex;gap:.4rem}
     .q-followup-item::before{content:"·";color:#D4930A;font-weight:700}
     .q-note{margin-top:.5rem;font-size:.78rem;color:#888;font-style:italic;line-height:1.5}
-
-    /* ── NOTES BOX ── */
     .notes-box{background:#FDF3E3;border:1px solid #F5D78E;border-radius:10px;padding:1.25rem;margin-bottom:2rem}
     .notes-title{font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#B07800;margin-bottom:.875rem}
     .notes-item{display:flex;gap:.6rem;padding:.3rem 0;font-size:.84rem;color:#555}
     .notes-bullet{color:#D4930A;font-weight:700;flex-shrink:0;padding-top:1px}
-
-    /* ── NEXT STEPS ── */
     .next-box{background:#E8F5EE;border:1px solid #A8D9BC;border-radius:10px;padding:1.25rem;margin-bottom:2rem}
     .next-title{font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#2D7A4F;margin-bottom:.875rem}
     .next-item{font-size:.84rem;color:#2C2C2C;padding:.3rem 0;display:flex;gap:.6rem}
     .next-num{color:#2D7A4F;font-weight:700;flex-shrink:0}
-
     footer{text-align:center;padding:1.5rem;font-size:.75rem;color:#aaa;border-top:1px solid #E8E6E1;margin-top:1rem}
     footer a{color:#D4930A;text-decoration:none}
-
     @media(max-width:520px){
       h1{font-size:1.4rem}
       .q-text{font-size:.85rem}
@@ -87,248 +71,248 @@
 <body>
 
 <header>
-  <a href="index.html" class="back">← Back to Hub</a>
-  <div class="eyebrow">Session Guide · Onboarding</div>
-  <h1>Initial Questions for Cleyton</h1>
-  <p class="header-sub">21 questions across 5 blocks — designed to understand the business as it actually operates</p>
+  <a href="index.html" class="back">← Voltar ao Hub</a>
+  <div class="eyebrow">Guia de Sessão · Onboarding</div>
+  <h1>Perguntas Iniciais para o Cleyton</h1>
+  <p class="header-sub">21 perguntas em 5 blocos — para entender o negócio como ele realmente funciona</p>
   <div class="meta-row">
-    <div class="meta-item"><strong>Session</strong>May 30, 2026 · Session 2</div>
-    <div class="meta-item"><strong>Estimated time</strong>40–50 minutes</div>
-    <div class="meta-item"><strong>Blocks required today</strong>1, 2, and 3</div>
+    <div class="meta-item"><strong>Sessão</strong>30 de maio de 2026 · Sessão 2</div>
+    <div class="meta-item"><strong>Tempo estimado</strong>40–50 minutos</div>
+    <div class="meta-item"><strong>Blocos obrigatórios hoje</strong>1, 2 e 3</div>
   </div>
   <div class="badge-row">
-    <span class="badge badge-gold">No assumptions about the spreadsheet</span>
-    <span class="badge badge-blue">Listen first, diagnose after</span>
+    <span class="badge badge-gold">Sem suposições sobre a planilha</span>
+    <span class="badge badge-blue">Ouvir primeiro, diagnosticar depois</span>
   </div>
 </header>
 
 <div class="content">
 
   <div class="intro-box">
-    <strong>How to use this guide:</strong> Ask each question exactly as written and let Cleyton answer fully before moving on. Do not open the spreadsheet while he's explaining — let him describe his system in his own words. Note the terms he uses (he may call things by different names). If an answer is vague, follow up with: <em>"Can you give me a concrete example — what happened last week?"</em>
+    <strong>Como usar este roteiro:</strong> Faça cada pergunta exatamente como está escrita e deixe o Cleyton responder completamente antes de continuar. Não abra a planilha enquanto ele estiver explicando — deixe ele descrever o sistema dele com as próprias palavras. Anote os termos que ele usa (ele pode chamar as coisas por nomes diferentes). Se uma resposta for vaga, pergunte: <em>"Me dá um exemplo concreto — o que aconteceu na semana passada?"</em>
   </div>
 
-  <!-- BLOCK 1 -->
+  <!-- BLOCO 1 -->
   <div class="block">
     <details open>
       <summary>
         <div class="block-icon bi-1">1</div>
         <div class="block-header-text">
-          <div class="block-priority">Required today · ~10 min</div>
-          <div class="block-title">The Spreadsheet — Explain It to Me</div>
+          <div class="block-priority">Obrigatório hoje · ~10 min</div>
+          <div class="block-title">A Planilha — Me Explica Como Funciona</div>
         </div>
-        <div class="block-meta">5 questions</div>
+        <div class="block-meta">5 perguntas</div>
         <div class="chevron">›</div>
       </summary>
       <div class="questions">
         <div class="q-item">
-          <div class="q-num">Q1</div>
-          <div class="q-text">"Was this spreadsheet created by you, or did you inherit it from Chris when you bought the store?"</div>
+          <div class="q-num">P1</div>
+          <div class="q-text">"Essa planilha foi você que criou, ou você herdou do Chris quando comprou a loja?"</div>
           <div class="q-followup">
-            <div class="q-followup-item">If inherited: does Chris use the same spreadsheet in his other stores?</div>
-            <div class="q-followup-item">If you created it: how long have you been using it?</div>
+            <div class="q-followup-item">Se herdou: o Chris usa a mesma planilha nas outras lojas dele?</div>
+            <div class="q-followup-item">Se criou você: desde quando você usa ela?</div>
           </div>
         </div>
         <div class="q-item">
-          <div class="q-num">Q2</div>
-          <div class="q-text">"When you walk into the store and want to see how the week is going — what do you open first?"</div>
-          <div class="q-note">Goal: find out which tab is actually used daily in practice.</div>
+          <div class="q-num">P2</div>
+          <div class="q-text">"Quando você chega na loja e quer ver como a semana tá indo — o que você abre primeiro?"</div>
+          <div class="q-note">Objetivo: identificar qual aba é mais usada na prática, no dia a dia.</div>
         </div>
         <div class="q-item">
-          <div class="q-num">Q3</div>
-          <div class="q-text">"Tell me what tabs this spreadsheet has and what each one means to you day-to-day."</div>
-          <div class="q-note">Let him list and explain in his own words. Don't name the tabs yourself.</div>
+          <div class="q-num">P3</div>
+          <div class="q-text">"Me conta quais abas essa planilha tem e o que cada uma representa pra você no dia a dia."</div>
+          <div class="q-note">Deixe ele listar e explicar com as palavras dele — não nomeie as abas você mesmo.</div>
         </div>
         <div class="q-item">
-          <div class="q-num">Q4</div>
-          <div class="q-text">"Is there any number you try to find in the spreadsheet but can't? Anything you want to see that isn't easy to get to?"</div>
+          <div class="q-num">P4</div>
+          <div class="q-text">"Tem algum número que você tenta encontrar na planilha mas não consegue? Alguma coisa que você quer ver e não tá fácil de achar?"</div>
         </div>
         <div class="q-item">
-          <div class="q-num">Q5</div>
-          <div class="q-text">"Is there any part of the spreadsheet you stopped using — or that always has errors and you've given up on?"</div>
+          <div class="q-num">P5</div>
+          <div class="q-text">"Tem alguma parte da planilha que você parou de usar — ou que sempre tem erro e você já desistiu?"</div>
         </div>
       </div>
     </details>
   </div>
 
-  <!-- BLOCK 2 -->
+  <!-- BLOCO 2 -->
   <div class="block">
     <details open>
       <summary>
         <div class="block-icon bi-2">2</div>
         <div class="block-header-text">
-          <div class="block-priority">Required today · ~10 min</div>
-          <div class="block-title">The Money — From Start to Finish</div>
+          <div class="block-priority">Obrigatório hoje · ~10 min</div>
+          <div class="block-title">O Dinheiro — Do Início ao Fim</div>
         </div>
-        <div class="block-meta">4 questions</div>
+        <div class="block-meta">4 perguntas</div>
         <div class="chevron">›</div>
       </summary>
       <div class="questions">
         <div class="q-item">
-          <div class="q-num">Q6</div>
-          <div class="q-text">"Walk me through a cash sale from start to finish — from the moment the customer pays to when the money is in your account."</div>
+          <div class="q-num">P6</div>
+          <div class="q-text">"Me explica uma venda em dinheiro do começo ao fim — do momento que o cliente paga até o dinheiro chegar na sua conta."</div>
           <div class="q-followup">
-            <div class="q-followup-item">Does the money go directly to your account, or does it pass through Chris first?</div>
-            <div class="q-followup-item">Is any portion of it sent to Chris's account?</div>
+            <div class="q-followup-item">O dinheiro vai direto pra sua conta, ou passa pelo Chris antes?</div>
+            <div class="q-followup-item">Alguma parte vai pra conta do Chris?</div>
           </div>
         </div>
         <div class="q-item">
-          <div class="q-num">Q7</div>
-          <div class="q-text">"What about a financed sale — Synchrony, Kafene, or any other — what happens? Does the payout go to your account or Chris's first?"</div>
+          <div class="q-num">P7</div>
+          <div class="q-text">"E uma venda financiada — Synchrony, Kafene ou qualquer outra — como funciona? O payout cai na sua conta ou na do Chris primeiro?"</div>
           <div class="q-followup">
-            <div class="q-followup-item">How long does it usually take to arrive after the sale?</div>
-            <div class="q-followup-item">Can you track what each financing company owes you at any given time?</div>
+            <div class="q-followup-item">Quanto tempo costuma levar pra chegar depois da venda?</div>
+            <div class="q-followup-item">Você consegue acompanhar o que cada financiadora te deve?</div>
           </div>
         </div>
         <div class="q-item">
-          <div class="q-num">Q8</div>
-          <div class="q-text">"Do you have a separate bank account for the store, or is everything mixed in with your personal account?"</div>
+          <div class="q-num">P8</div>
+          <div class="q-text">"Você tem uma conta bancária separada pra loja, ou tá tudo misturado com a sua conta pessoal?"</div>
           <div class="q-followup">
-            <div class="q-followup-item">If separate: which bank? One account or more than one?</div>
+            <div class="q-followup-item">Se separada: qual banco? Só uma conta ou tem mais de uma?</div>
           </div>
         </div>
         <div class="q-item">
-          <div class="q-num">Q9</div>
-          <div class="q-text">"At the end of the month, how do you know how much the store brought in and how much is left over?"</div>
-          <div class="q-note">Goal: understand whether he has a formal close, a mental estimate, or no visibility at all.</div>
+          <div class="q-num">P9</div>
+          <div class="q-text">"No final do mês, como você sabe quanto a loja faturou e quanto sobrou?"</div>
+          <div class="q-note">Objetivo: entender se ele faz um fechamento formal, uma estimativa mental, ou não tem esse controle.</div>
         </div>
       </div>
     </details>
   </div>
 
-  <!-- BLOCK 3 -->
+  <!-- BLOCO 3 -->
   <div class="block">
     <details open>
       <summary>
         <div class="block-icon bi-3">3</div>
         <div class="block-header-text">
-          <div class="block-priority">Required today · ~15 min</div>
-          <div class="block-title">The Settlement with Chris</div>
+          <div class="block-priority">Obrigatório hoje · ~15 min</div>
+          <div class="block-title">O Acerto com o Chris</div>
         </div>
-        <div class="block-meta">5 questions</div>
+        <div class="block-meta">5 perguntas</div>
         <div class="chevron">›</div>
       </summary>
       <div class="questions">
         <div class="q-item">
-          <div class="q-num">Q10</div>
-          <div class="q-text">"Explain to me how the financial settlement between you and Chris works — what's the structure?"</div>
+          <div class="q-num">P10</div>
+          <div class="q-text">"Me explica como funciona o acerto financeiro entre você e o Chris — qual é a estrutura?"</div>
           <div class="q-followup">
-            <div class="q-followup-item">How often do you settle up — daily, weekly, monthly?</div>
-            <div class="q-followup-item">Who initiates it — you, him, or is it automatic?</div>
+            <div class="q-followup-item">Com que frequência vocês acertam — diário, semanal, mensal?</div>
+            <div class="q-followup-item">Quem inicia o acerto — você, ele, ou é automático?</div>
           </div>
         </div>
         <div class="q-item">
-          <div class="q-num">Q11</div>
-          <div class="q-text">"When you owe something to Chris — inventory purchases, franchise fees, etc. — how is that tracked? Is there a document, an email, a WhatsApp message, or is it in memory?"</div>
+          <div class="q-num">P11</div>
+          <div class="q-text">"Quando você deve algo pro Chris — estoque, franchise fee etc. — como isso é registrado? Tem documento, e-mail, WhatsApp, ou fica na memória?"</div>
         </div>
         <div class="q-item">
-          <div class="q-num">Q12</div>
-          <div class="q-text">"And when Chris owes you something — financing payouts, commissions, transfers — how do you track what he still needs to pay you?"</div>
+          <div class="q-num">P12</div>
+          <div class="q-text">"E quando o Chris te deve algo — payouts de financiadoras, comissões, transferências — como você controla o que ele ainda precisa te pagar?"</div>
         </div>
         <div class="q-item">
-          <div class="q-num">Q13</div>
-          <div class="q-text">"Has there ever been a disagreement between you two about a number — you thought he owed you more, or he thought you owed him more? How did you resolve it?"</div>
+          <div class="q-num">P13</div>
+          <div class="q-text">"Já aconteceu de vocês discordarem sobre algum valor — você achar que ele te devia mais, ou ele achar que você devia mais? Como resolveram?"</div>
         </div>
         <div class="q-item">
-          <div class="q-num">Q14</div>
-          <div class="q-text">"Was this settlement arrangement put in writing anywhere — a contract, an email, a WhatsApp message?"</div>
+          <div class="q-num">P14</div>
+          <div class="q-text">"Esse acordo de acerto foi colocado por escrito em algum lugar — contrato, e-mail, mensagem de WhatsApp?"</div>
         </div>
       </div>
     </details>
   </div>
 
-  <!-- BLOCK 4 -->
+  <!-- BLOCO 4 -->
   <div class="block">
     <details>
       <summary>
         <div class="block-icon bi-4">4</div>
         <div class="block-header-text">
-          <div class="block-priority">If time allows · ~10 min</div>
-          <div class="block-title">Inventory &amp; Vendors</div>
+          <div class="block-priority">Se houver tempo · ~10 min</div>
+          <div class="block-title">Estoque &amp; Fornecedores</div>
         </div>
-        <div class="block-meta">4 questions</div>
+        <div class="block-meta">4 perguntas</div>
         <div class="chevron">›</div>
       </summary>
       <div class="questions">
         <div class="q-item">
-          <div class="q-num">Q15</div>
-          <div class="q-text">"When you buy inventory — furniture, beds, mattresses — do you buy directly from the vendor or does it go through Chris?"</div>
+          <div class="q-num">P15</div>
+          <div class="q-text">"Quando você compra estoque — móveis, camas, colchões — você compra direto do fornecedor ou passa pelo Chris?"</div>
           <div class="q-followup">
-            <div class="q-followup-item">If through Chris: does he charge a markup, or is it at cost?</div>
-            <div class="q-followup-item">If direct: which vendors do you already have open accounts with?</div>
+            <div class="q-followup-item">Se passa pelo Chris: ele cobra com markup ou é pelo custo?</div>
+            <div class="q-followup-item">Se direto: quais fornecedores você já tem conta aberta?</div>
           </div>
         </div>
         <div class="q-item">
-          <div class="q-num">Q16</div>
-          <div class="q-text">"Do you know right now, roughly, what inventory you have on the floor — how many items, what it cost, what it's worth?"</div>
+          <div class="q-num">P16</div>
+          <div class="q-text">"Você sabe hoje, de cabeça, o que tem de estoque aqui na loja — quantos itens, quanto custou, quanto vale?"</div>
           <div class="q-followup">
-            <div class="q-followup-item">Is that tracked anywhere?</div>
+            <div class="q-followup-item">Isso está rastreado em algum lugar?</div>
           </div>
         </div>
         <div class="q-item">
-          <div class="q-num">Q17</div>
-          <div class="q-text">"Is all the inventory in the store yours — you've fully paid for it — or is some of it still owed to Chris or a vendor?"</div>
+          <div class="q-num">P17</div>
+          <div class="q-text">"Todo o estoque da loja já está pago, ou tem alguma parte que ainda está devendo pro Chris ou pra algum fornecedor?"</div>
         </div>
         <div class="q-item">
-          <div class="q-num">Q18</div>
-          <div class="q-text">"When a customer places a custom order, how does that work — do you order from the vendor before or after they pay you?"</div>
+          <div class="q-num">P18</div>
+          <div class="q-text">"Quando um cliente faz um pedido personalizado, como funciona — você pede pro fornecedor antes ou depois do cliente pagar?"</div>
         </div>
       </div>
     </details>
   </div>
 
-  <!-- BLOCK 5 -->
+  <!-- BLOCO 5 -->
   <div class="block">
     <details>
       <summary>
         <div class="block-icon bi-5">5</div>
         <div class="block-header-text">
-          <div class="block-priority">If time allows · ~5 min</div>
-          <div class="block-title">What You Most Want to Fix</div>
+          <div class="block-priority">Se houver tempo · ~5 min</div>
+          <div class="block-title">O Que Você Mais Quer Resolver</div>
         </div>
-        <div class="block-meta">3 questions</div>
+        <div class="block-meta">3 perguntas</div>
         <div class="chevron">›</div>
       </summary>
       <div class="questions">
         <div class="q-item">
-          <div class="q-num">Q19</div>
-          <div class="q-text">"If you could fix one financial thing about the store today — just one — what would it be?"</div>
+          <div class="q-num">P19</div>
+          <div class="q-text">"Se você pudesse resolver uma coisa financeira da loja hoje — só uma — o que seria?"</div>
         </div>
         <div class="q-item">
-          <div class="q-num">Q20</div>
-          <div class="q-text">"Is there any number that keeps you up at night — something you're worried about but can't see clearly?"</div>
+          <div class="q-num">P20</div>
+          <div class="q-text">"Tem algum número que te tira o sono — algo que te preocupa mas que você não consegue ver claramente?"</div>
         </div>
         <div class="q-item">
-          <div class="q-num">Q21</div>
-          <div class="q-text">"When you picture the financials organized 6 months from now — what changes in your day-to-day?"</div>
+          <div class="q-num">P21</div>
+          <div class="q-text">"Quando você imagina o financeiro organizado daqui a 6 meses — o que muda no seu dia a dia?"</div>
         </div>
       </div>
     </details>
   </div>
 
-  <!-- NOTES -->
+  <!-- NOTAS -->
   <div class="notes-box">
-    <div class="notes-title">Notes for conducting the interview</div>
-    <div class="notes-item"><span class="notes-bullet">›</span>Don't open the spreadsheet while he's talking — let him describe his world first</div>
-    <div class="notes-item"><span class="notes-bullet">›</span>Write down every term he uses — he may call things by names that differ from what's in the sheet</div>
-    <div class="notes-item"><span class="notes-bullet">›</span>If the answer is vague: <em>"Give me a concrete example — what happened last week?"</em></div>
-    <div class="notes-item"><span class="notes-bullet">›</span>Blocks 1, 2, and 3 are required today. Blocks 4 and 5 if time allows.</div>
-    <div class="notes-item"><span class="notes-bullet">›</span>Estimated time for all 5 blocks: 40–50 minutes</div>
+    <div class="notes-title">Notas para conduzir a conversa</div>
+    <div class="notes-item"><span class="notes-bullet">›</span>Não abra a planilha enquanto ele estiver falando — deixe ele descrever o mundo dele primeiro</div>
+    <div class="notes-item"><span class="notes-bullet">›</span>Anote cada termo que ele usar — ele pode chamar coisas por nomes diferentes do que aparece na planilha</div>
+    <div class="notes-item"><span class="notes-bullet">›</span>Se a resposta for vaga: <em>"Me dá um exemplo concreto — o que aconteceu na semana passada?"</em></div>
+    <div class="notes-item"><span class="notes-bullet">›</span>Blocos 1, 2 e 3 são obrigatórios hoje. Blocos 4 e 5 se sobrar tempo.</div>
+    <div class="notes-item"><span class="notes-bullet">›</span>Tempo estimado para todos os 5 blocos: 40–50 minutos</div>
   </div>
 
-  <!-- NEXT STEPS -->
+  <!-- PRÓXIMOS PASSOS -->
   <div class="next-box">
-    <div class="next-title">After this block — what comes next</div>
-    <div class="next-item"><span class="next-num">1</span>Compare his answers to what was seen in the spreadsheet — identify gaps and contradictions</div>
-    <div class="next-item"><span class="next-num">2</span>Update the Risk Register with confirmed vs. resolved items</div>
-    <div class="next-item"><span class="next-num">3</span>Walk through the Settlement Ledger v1 line by line to get confirmed totals for Batches 3–6</div>
+    <div class="next-title">Depois deste bloco — o que vem a seguir</div>
+    <div class="next-item"><span class="next-num">1</span>Comparar as respostas com o que foi visto na planilha — identificar lacunas e contradições</div>
+    <div class="next-item"><span class="next-num">2</span>Atualizar o Registro de Riscos com os itens confirmados vs. resolvidos</div>
+    <div class="next-item"><span class="next-num">3</span>Percorrer o Settlement Ledger v1 linha a linha para obter os totais confirmados dos Batches 3–6</div>
   </div>
 
 </div>
 
 <footer>
-  <a href="index.html">← Back to Hub</a> &nbsp;·&nbsp;
-  Prepared by <strong>Hadassa · LJ Business Consulting</strong> &nbsp;·&nbsp; Pro bono &nbsp;·&nbsp; May 2026
+  <a href="index.html">← Voltar ao Hub</a> &nbsp;·&nbsp;
+  Preparado por <strong>Hadassa · LJ Business Consulting</strong> &nbsp;·&nbsp; Pro bono &nbsp;·&nbsp; Maio de 2026
 </footer>
 
 </body>
