@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SHF — Questions for Cleyton</title>
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0}
+    :root{
+      --navy:#1C2B3A;
+      --gold:#D4930A;
+      --gold-light:#FDF3E3;
+      --green:#2D7A4F;
+      --red:#C0392B;
+      --bg:#F5F4F0;
+      --white:#FFFFFF;
+      --border:#E8E6E1;
+      --text:#2C2C2C;
+      --muted:#888;
+    }
+    body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;padding-bottom:6rem}
+
+    /* ── HEADER ── */
+    .site-header{background:var(--navy);color:white;padding:1.75rem 1.25rem 1.5rem;position:sticky;top:0;z-index:100;box-shadow:0 2px 8px rgba(0,0,0,.25)}
+    .header-top{display:flex;align-items:flex-start;justify-content:space-between;gap:1rem}
+    .header-titles{}
+    .eyebrow{font-size:.65rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:.25rem}
+    .header-title{font-size:1.3rem;font-weight:700;line-height:1.2;color:white}
+    .header-sub{font-size:.8rem;color:rgba(255,255,255,.55);margin-top:.2rem}
+    .progress-wrap{min-width:80px;text-align:right}
+    .progress-label{font-size:.65rem;color:rgba(255,255,255,.5);margin-bottom:.3rem}
+    .progress-bar-bg{background:rgba(255,255,255,.15);border-radius:999px;height:6px;width:80px}
+    .progress-bar-fill{background:var(--gold);border-radius:999px;height:6px;width:0%;transition:width .4s}
+    .progress-pct{font-size:.7rem;font-weight:700;color:var(--gold);margin-top:.2rem}
+
+    /* ── AUTOSAVE ── */
+    .autosave-bar{background:rgba(255,255,255,.07);padding:.35rem 1.25rem;font-size:.7rem;color:rgba(255,255,255,.45);display:flex;align-items:center;gap:.4rem}
+    .autosave-dot{width:6px;height:6px;border-radius:50%;background:#5DC98A;flex-shrink:0}
+
+    /* ── CONTENT ── */
+    .content{max-width:680px;margin:0 auto;padding:1.5rem 1.25rem}
+
+    /* ── INTRO ── */
+    .intro{background:white;border-radius:10px;padding:1rem 1.25rem;margin-bottom:1.5rem;box-shadow:0 1px 3px rgba(0,0,0,.06);font-size:.875rem;color:#555;line-height:1.7}
+    .intro strong{color:var(--navy)}
+
+    /* ── BLOCK ── */
+    .block{margin-bottom:1.25rem;border-radius:12px;overflow:hidden;box-shadow:0 1px 4px rgba(0,0,0,.07)}
+    .block-header{display:flex;align-items:center;gap:.75rem;padding:.875rem 1.25rem;cursor:pointer;user-select:none;-webkit-tap-highlight-color:transparent}
+    .bh-1{background:#2D7A4F;color:white}
+    .bh-2{background:var(--navy);color:white}
+    .bh-3{background:var(--red);color:white}
+    .bh-4{background:var(--gold);color:white}
+    .bh-5{background:#6C5CE7;color:white}
+    .block-num{width:28px;height:28px;border-radius:7px;background:rgba(255,255,255,.2);display:flex;align-items:center;justify-content:center;font-size:.8rem;font-weight:800;flex-shrink:0}
+    .block-info{flex:1}
+    .block-name{font-size:.9rem;font-weight:700;line-height:1.2}
+    .block-meta{font-size:.7rem;opacity:.75;margin-top:.1rem}
+    .block-status{display:flex;flex-direction:column;align-items:flex-end;gap:.2rem}
+    .block-count{font-size:.7rem;opacity:.65}
+    .block-chevron{font-size:.85rem;opacity:.7;transition:transform .2s}
+    .block-chevron.open{transform:rotate(90deg)}
+    .block-body{background:white;display:none}
+    .block-body.open{display:block}
+
+    /* ── QUESTION ── */
+    .question{padding:1rem 1.25rem;border-bottom:1px solid var(--bg)}
+    .question:last-child{border-bottom:none}
+    .q-label{font-size:.68rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--gold);margin-bottom:.4rem}
+    .q-text{font-size:.9rem;font-weight:600;color:var(--navy);margin-bottom:.5rem;line-height:1.45}
+    .q-followups{margin-bottom:.6rem}
+    .q-followup{font-size:.78rem;color:var(--muted);display:flex;gap:.4rem;padding:.1rem 0}
+    .q-followup::before{content:"·";color:var(--gold);font-weight:700}
+    textarea{width:100%;border:1.5px solid var(--border);border-radius:8px;padding:.65rem .875rem;font-size:.875rem;font-family:inherit;color:var(--text);background:var(--bg);resize:vertical;min-height:70px;transition:border-color .15s,box-shadow .15s;line-height:1.5}
+    textarea:focus{outline:none;border-color:var(--gold);box-shadow:0 0 0 3px rgba(212,147,10,.12);background:white}
+    textarea.filled{border-color:#B8DCCB;background:white}
+
+    /* ── REQUIRED BADGE ── */
+    .req-badge{display:inline-block;font-size:.6rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;background:#FEF0F0;color:var(--red);border:1px solid #F5C0C0;border-radius:4px;padding:.1rem .35rem;margin-left:.4rem;vertical-align:middle}
+
+    /* ── SUBMIT ZONE ── */
+    .submit-zone{background:white;border-radius:12px;padding:1.25rem;box-shadow:0 1px 4px rgba(0,0,0,.07);margin-top:1.5rem}
+    .submit-zone h3{font-size:.95rem;font-weight:700;color:var(--navy);margin-bottom:.25rem}
+    .submit-zone p{font-size:.82rem;color:var(--muted);margin-bottom:1rem;line-height:1.55}
+    .btn{display:block;width:100%;padding:.875rem 1.25rem;border:none;border-radius:9px;font-size:.925rem;font-weight:700;font-family:inherit;cursor:pointer;transition:opacity .15s,transform .1s;text-align:center;text-decoration:none}
+    .btn:active{transform:scale(.98)}
+    .btn-gold{background:var(--gold);color:white}
+    .btn-gold:hover{opacity:.92}
+    .btn-navy{background:var(--navy);color:white;margin-top:.65rem}
+    .btn-navy:hover{opacity:.92}
+    .btn-outline{background:white;color:var(--navy);border:1.5px solid var(--border);margin-top:.65rem}
+    .btn-outline:hover{border-color:var(--gold);color:var(--gold)}
+
+    /* ── MODAL (summary) ── */
+    .modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:200;overflow-y:auto;padding:1.5rem}
+    .modal-overlay.open{display:flex;align-items:flex-start;justify-content:center}
+    .modal{background:white;border-radius:14px;max-width:680px;width:100%;padding:1.5rem;position:relative}
+    .modal-close{position:absolute;top:1rem;right:1rem;background:var(--bg);border:none;border-radius:50%;width:32px;height:32px;cursor:pointer;font-size:1.1rem;color:var(--muted);display:flex;align-items:center;justify-content:center}
+    .modal-close:hover{color:var(--text)}
+    .modal h2{font-size:1.1rem;font-weight:700;color:var(--navy);margin-bottom:.25rem}
+    .modal .modal-sub{font-size:.82rem;color:var(--muted);margin-bottom:1.25rem}
+    .modal-block{margin-bottom:1.25rem}
+    .modal-block-title{font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);padding-bottom:.35rem;border-bottom:2px solid var(--gold);margin-bottom:.75rem}
+    .modal-q{margin-bottom:.75rem}
+    .modal-q-label{font-size:.72rem;font-weight:700;color:var(--muted);margin-bottom:.2rem}
+    .modal-q-text{font-size:.8rem;color:var(--navy);font-weight:600;margin-bottom:.25rem}
+    .modal-answer{font-size:.875rem;color:var(--text);background:var(--bg);border-radius:6px;padding:.6rem .875rem;line-height:1.55;white-space:pre-wrap;word-break:break-word}
+    .modal-empty{font-size:.8rem;color:#ccc;font-style:italic}
+    .modal-actions{display:flex;flex-direction:column;gap:.6rem;margin-top:1.25rem;padding-top:1.25rem;border-top:1px solid var(--border)}
+
+    /* ── COPY TOAST ── */
+    .toast{position:fixed;bottom:1.5rem;left:50%;transform:translateX(-50%) translateY(80px);background:var(--green);color:white;padding:.6rem 1.25rem;border-radius:999px;font-size:.82rem;font-weight:600;box-shadow:0 4px 14px rgba(0,0,0,.2);transition:transform .3s,opacity .3s;opacity:0;z-index:300}
+    .toast.show{transform:translateX(-50%) translateY(0);opacity:1}
+
+    @media(max-width:520px){
+      .header-title{font-size:1.1rem}
+      .block-name{font-size:.85rem}
+      textarea{font-size:.85rem}
+    }
+  </style>
+</head>
+<body>
+
+<div class="site-header">
+  <div class="header-top">
+    <div class="header-titles">
+      <div class="eyebrow">Sweet Home Furniture · Saugus</div>
+      <div class="header-title">Getting to Know the Business</div>
+      <div class="header-sub">Answer in your own words — no wrong answers</div>
+    </div>
+    <div class="progress-wrap">
+      <div class="progress-label">Progress</div>
+      <div class="progress-bar-bg"><div class="progress-bar-fill" id="progressFill"></div></div>
+      <div class="progress-pct" id="progressPct">0%</div>
+    </div>
+  </div>
+  <div class="autosave-bar">
+    <div class="autosave-dot"></div>
+    <span id="autosaveStatus">Answers saved automatically</span>
+  </div>
+</div>
+
+<div class="content">
+  <div class="intro">
+    <strong>Hi Cleyton</strong> — these are a few questions to help understand how the store works from your perspective. There are no right or wrong answers. Take your time with each one. Your answers save automatically as you type, and you can submit everything at the end.
+  </div>
+
+  <form id="mainForm" novalidate>
+
+    <!-- BLOCK 1 -->
+    <div class="block">
+      <div class="block-header bh-1" onclick="toggleBlock('b1')">
+        <div class="block-num">1</div>
+        <div class="block-info">
+          <div class="block-name">The Spreadsheet</div>
+          <div class="block-meta">How you use it day-to-day · 5 questions</div>
+        </div>
+        <div class="block-status">
+          <div class="block-count" id="b1count">0 / 5 answered</div>
+          <div class="block-chevron open" id="b1chev">›</div>
+        </div>
+      </div>
+      <div class="block-body open" id="b1">
+        <div class="question">
+          <div class="q-label">Question 1 <span class="req-badge">Required</span></div>
+          <div class="q-text">Was this spreadsheet created by you, or did you inherit it from Chris when you bought the store?</div>
+          <div class="q-followups">
+            <div class="q-followup">If inherited: does Chris use the same spreadsheet in his other stores?</div>
+            <div class="q-followup">If you created it: how long have you been using it?</div>
+          </div>
+          <textarea id="q1" rows="3" placeholder="Your answer here..." oninput="saveAndUpdate()"></textarea>
+        </div>
+        <div class="question">
+          <div class="q-label">Question 2 <span class="req-badge">Required</span></div>
+          <div class="q-text">When you walk into the store and want to see how the week is going — what do you open first?</div>
+          <textarea id="q2" rows="3" placeholder="Your answer here..." oninput="saveAndUpdate()"></textarea>
+        </div>
+        <div class="question">
+          <div class="q-label">Question 3 <span class="req-badge">Required</span></div>
+          <div class="q-text">Tell me what tabs this spreadsheet has and what each one means to you day-to-day.</div>
+          <textarea id="q3" rows="4" placeholder="Describe each tab and what you use it for..." oninput="saveAndUpdate()"></textarea>
+        </div>
+        <div class="question">
+          <div class="q-label">Question 4</div>
+          <div class="q-text">Is there any number you try to find in the spreadsheet but can't? Anything you want to see that isn't easy to get to?</div>
+          <textarea id="q4" rows="3" placeholder="Your answer here..." oninput="saveAndUpdate()"></textarea>
+        </div>
+        <div class="question">
+          <div class="q-label">Question 5</div>
+          <div class="q-text">Is there any part of the spreadsheet you stopped using — or that always has errors and you've given up on?</div>
+          <textarea id="q5" rows="3" placeholder="Your answer here..." oninput="saveAndUpdate()"></textarea>
+        </div>
+      </div>
+    </div>
+
+    <!-- BLOCK 2 -->
+    <div class="block">
+      <div class="block-header bh-2" onclick="toggleBlock('b2')">
+        <div class="block-num">2</div>
+        <div class="block-info">
+          <div class="block-name">The Money — From Start to Finish</div>
+          <div class="block-meta">How cash and financing flow · 4 questions</div>
+        </div>
+        <div class="block-status">
+          <div class="block-count" id="b2count">0 / 4 answered</div>
+          <div class="block-chevron" id="b2chev">›</div>
+        </div>
+      </div>
+      <div class="block-body" id="b2">
+        <div class="question">
+          <div class="q-label">Question 6 <span class="req-badge">Required</span></div>
+          <div class="q-text">Walk me through a cash sale — from the moment the customer pays to when the money is in your account.</div>
+          <div class="q-followups">
+            <div class="q-followup">Does the money go directly to your account, or does it pass through Chris first?</div>
+            <div class="q-followup">Is any portion sent to Chris's account?</div>
+          </div>
+          <textarea id="q6" rows="4" placeholder="Your answer here..." oninput="saveAndUpdate()"></textarea>
+        </div>
+        <div class="question">
+          <div class="q-label">Question 7 <span class="req-badge">Required</span></div>
+          <div class="q-text">What about a financed sale — Synchrony, Kafene, or any other — what happens? Does the payout go to your account or Chris's first?</div>
+          <div class="q-followups">
+            <div class="q-followup">How long does it usually take to arrive after the sale?</div>
+            <div class="q-followup">Can you track what each financing company owes you?</div>
+          </div>
+          <textarea id="q7" rows="4" placeholder="Your answer here..." oninput="saveAndUpdate()"></textarea>
+        </div>
+        <div class="question">
+          <div class="q-label">Question 8</div>
+          <div class="q-text">Do you have a separate bank account for the store, or is everything mixed in with your personal account?</div>
+          <div class="q-followups">
+            <div class="q-followup">If separate: which bank? One account or more than one?</div>
+          </div>
+          <textarea id="q8" rows="3" placeholder="Your answer here..." oninput="saveAndUpdate()"></textarea>
+        </div>
+        <div class="question">
+          <div class="q-label">Question 9</div>
+          <div class="q-text">At the end of the month, how do you know how much the store brought in and how much is left over?</div>
+          <textarea id="q9" rows="3" placeholder="Your answer here..." oninput="saveAndUpdate()"></textarea>
+        </div>
+      </div>
+    </div>
+
+    <!-- BLOCK 3 -->
+    <div class="block">
+      <div class="block-header bh-3" onclick="toggleBlock('b3')">
+        <div class="block-num">3</div>
+        <div class="block-info">
+          <div class="block-name">The Settlement with Chris</div>
+          <div class="block-meta">How you track what you owe each other · 5 questions</div>
+        </div>
+        <div class="block-status">
+          <div class="block-count" id="b3count">0 / 5 answered</div>
+          <div class="block-chevron" id="b3chev">›</div>
+        </div>
+      </div>
+      <div class="block-body" id="b3">
+        <div class="question">
+          <div class="q-label">Question 10 <span class="req-badge">Required</span></div>
+          <div class="q-text">Explain to me how the financial settlement between you and Chris works — what's the structure?</div>
+          <div class="q-followups">
+            <div class="q-followup">How often do you settle up — daily, weekly, monthly?</div>
+            <div class="q-followup">Who initiates it — you, him, or is it automatic?</div>
+          </div>
+          <textarea id="q10" rows="4" placeholder="Your answer here..." oninput="saveAndUpdate()"></textarea>
+        </div>
+        <div class="question">
+          <div class="q-label">Question 11</div>
+          <div class="q-text">When you owe something to Chris — inventory, franchise fees, etc. — how is that tracked? Document, email, WhatsApp, or memory?</div>
+          <textarea id="q11" rows="3" placeholder="Your answer here..." oninput="saveAndUpdate()"></textarea>
+        </div>
+        <div class="question">
+          <div class="q-label">Question 12</div>
+          <div class="q-text">When Chris owes you something — financing payouts, commissions, transfers — how do you track what he still needs to pay you?</div>
+          <textarea id="q12" rows="3" placeholder="Your answer here..." oninput="saveAndUpdate()"></textarea>
+        </div>
+        <div class="question">
+          <div class="q-label">Question 13</div>
+          <div class="q-text">Has there ever been a disagreement about a number — you thought he owed more, or he thought you owed more? How did you resolve it?</div>
+          <textarea id="q13" rows="3" placeholder="Your answer here..." oninput="saveAndUpdate()"></textarea>
+        </div>
+        <div class="question">
+          <div class="q-label">Question 14</div>
+          <div class="q-text">Was this settlement arrangement put in writing anywhere — a contract, email, or WhatsApp message?</div>
+          <textarea id="q14" rows="3" placeholder="Your answer here..." oninput="saveAndUpdate()"></textarea>
+        </div>
+      </div>
+    </div>
+
+    <!-- BLOCK 4 -->
+    <div class="block">
+      <div class="block-header bh-4" onclick="toggleBlock('b4')">
+        <div class="block-num">4</div>
+        <div class="block-info">
+          <div class="block-name">Inventory &amp; Vendors</div>
+          <div class="block-meta">How you buy and track stock · 4 questions</div>
+        </div>
+        <div class="block-status">
+          <div class="block-count" id="b4count">0 / 4 answered</div>
+          <div class="block-chevron" id="b4chev">›</div>
+        </div>
+      </div>
+      <div class="block-body" id="b4">
+        <div class="question">
+          <div class="q-label">Question 15</div>
+          <div class="q-text">When you buy inventory, do you buy directly from the vendor or does it go through Chris?</div>
+          <div class="q-followups">
+            <div class="q-followup">If through Chris: does he charge a markup, or is it at cost?</div>
+            <div class="q-followup">If direct: which vendors do you have open accounts with?</div>
+          </div>
+          <textarea id="q15" rows="3" placeholder="Your answer here..." oninput="saveAndUpdate()"></textarea>
+        </div>
+        <div class="question">
+          <div class="q-label">Question 16</div>
+          <div class="q-text">Do you know right now, roughly, what inventory you have on the floor — how many items, what it cost, what it's worth?</div>
+          <div class="q-followups">
+            <div class="q-followup">Is that tracked anywhere?</div>
+          </div>
+          <textarea id="q16" rows="3" placeholder="Your answer here..." oninput="saveAndUpdate()"></textarea>
+        </div>
+        <div class="question">
+          <div class="q-label">Question 17</div>
+          <div class="q-text">Is all the inventory in the store fully paid for, or is some still owed to Chris or a vendor?</div>
+          <textarea id="q17" rows="3" placeholder="Your answer here..." oninput="saveAndUpdate()"></textarea>
+        </div>
+        <div class="question">
+          <div class="q-label">Question 18</div>
+          <div class="q-text">When a customer places a custom order, how does that work — do you order from the vendor before or after they pay you?</div>
+          <textarea id="q18" rows="3" placeholder="Your answer here..." oninput="saveAndUpdate()"></textarea>
+        </div>
+      </div>
+    </div>
+
+    <!-- BLOCK 5 -->
+    <div class="block">
+      <div class="block-header bh-5" onclick="toggleBlock('b5')">
+        <div class="block-num">5</div>
+        <div class="block-info">
+          <div class="block-name">What You Most Want to Fix</div>
+          <div class="block-meta">Your priorities · 3 questions</div>
+        </div>
+        <div class="block-status">
+          <div class="block-count" id="b5count">0 / 3 answered</div>
+          <div class="block-chevron" id="b5chev">›</div>
+        </div>
+      </div>
+      <div class="block-body" id="b5">
+        <div class="question">
+          <div class="q-label">Question 19</div>
+          <div class="q-text">If you could fix one financial thing about the store today — just one — what would it be?</div>
+          <textarea id="q19" rows="3" placeholder="Your answer here..." oninput="saveAndUpdate()"></textarea>
+        </div>
+        <div class="question">
+          <div class="q-label">Question 20</div>
+          <div class="q-text">Is there any number that keeps you up at night — something you're worried about but can't see clearly?</div>
+          <textarea id="q20" rows="3" placeholder="Your answer here..." oninput="saveAndUpdate()"></textarea>
+        </div>
+        <div class="question">
+          <div class="q-label">Question 21</div>
+          <div class="q-text">When you picture the financials organized 6 months from now — what changes in your day-to-day?</div>
+          <textarea id="q21" rows="3" placeholder="Your answer here..." oninput="saveAndUpdate()"></textarea>
+        </div>
+      </div>
+    </div>
+
+    <!-- SUBMIT -->
+    <div class="submit-zone">
+      <h3>Ready to submit?</h3>
+      <p>When you're done, click the button below. You'll see a summary of all your answers and a button to send them directly to Hadassa by email.</p>
+      <button type="button" class="btn btn-gold" onclick="openSummary()">Review &amp; Send to Hadassa →</button>
+      <button type="button" class="btn btn-outline" onclick="clearForm()">Clear all answers</button>
+    </div>
+
+  </form>
+</div>
+
+<!-- MODAL SUMMARY -->
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <h2>Review Your Answers</h2>
+    <p class="modal-sub">Look over your answers below. When ready, choose how to send them to Hadassa.</p>
+    <div id="summaryContent"></div>
+    <div class="modal-actions">
+      <a id="emailBtn" href="#" class="btn btn-gold">Send to Hadassa by Email →</a>
+      <button type="button" class="btn btn-navy" onclick="copyAnswers()">Copy All Answers to Clipboard</button>
+      <button type="button" class="btn btn-outline" onclick="closeModal()">← Go back and edit</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast">Copied to clipboard!</div>
+
+<script>
+  const STORAGE_KEY = 'shf_cleyton_answers';
+  const RECIPIENT = 'hadassa@ljbusinessconsulting.com';
+
+  const questions = [
+    { id:'q1',  block:1, label:'Q1', text:'Was this spreadsheet created by you, or did you inherit it from Chris?', required:true },
+    { id:'q2',  block:1, label:'Q2', text:'When you walk into the store — what do you open first?', required:true },
+    { id:'q3',  block:1, label:'Q3', text:'What tabs does the spreadsheet have and what does each one mean to you?', required:true },
+    { id:'q4',  block:1, label:'Q4', text:'Any number you try to find but can\'t?', required:false },
+    { id:'q5',  block:1, label:'Q5', text:'Any part you stopped using or gave up on?', required:false },
+    { id:'q6',  block:2, label:'Q6', text:'Walk me through a cash sale — start to finish.', required:true },
+    { id:'q7',  block:2, label:'Q7', text:'What about a financed sale?', required:true },
+    { id:'q8',  block:2, label:'Q8', text:'Separate bank account for the store?', required:false },
+    { id:'q9',  block:2, label:'Q9', text:'How do you know how much the store made at end of month?', required:false },
+    { id:'q10', block:3, label:'Q10', text:'Explain how the settlement with Chris works.', required:true },
+    { id:'q11', block:3, label:'Q11', text:'When you owe Chris something — how is it tracked?', required:false },
+    { id:'q12', block:3, label:'Q12', text:'When Chris owes you — how do you track it?', required:false },
+    { id:'q13', block:3, label:'Q13', text:'Has there ever been a disagreement about a number?', required:false },
+    { id:'q14', block:3, label:'Q14', text:'Was the settlement arrangement put in writing?', required:false },
+    { id:'q15', block:4, label:'Q15', text:'Do you buy inventory direct or through Chris?', required:false },
+    { id:'q16', block:4, label:'Q16', text:'Do you know what inventory you have on the floor right now?', required:false },
+    { id:'q17', block:4, label:'Q17', text:'Is all inventory fully paid for, or some still owed?', required:false },
+    { id:'q18', block:4, label:'Q18', text:'Custom orders — before or after customer pays?', required:false },
+    { id:'q19', block:5, label:'Q19', text:'If you could fix one financial thing today — what would it be?', required:false },
+    { id:'q20', block:5, label:'Q20', text:'Any number that keeps you up at night?', required:false },
+    { id:'q21', block:5, label:'Q21', text:'What changes in 6 months if the financials are organized?', required:false },
+  ];
+
+  const blockSizes = { 1:5, 2:4, 3:5, 4:4, 5:3 };
+
+  // Load saved answers
+  function loadAnswers() {
+    try {
+      const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
+      questions.forEach(q => {
+        const el = document.getElementById(q.id);
+        if (el && saved[q.id]) { el.value = saved[q.id]; el.classList.add('filled'); }
+      });
+    } catch(e) {}
+    updateProgress();
+  }
+
+  // Save and update UI
+  function saveAndUpdate() {
+    const data = {};
+    questions.forEach(q => {
+      const el = document.getElementById(q.id);
+      if (el) {
+        data[q.id] = el.value;
+        el.classList.toggle('filled', el.value.trim().length > 0);
+      }
+    });
+    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(data)); } catch(e) {}
+    updateProgress();
+    const as = document.getElementById('autosaveStatus');
+    if (as) { as.textContent = 'Saved · ' + new Date().toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'}); }
+  }
+
+  function updateProgress() {
+    const answered = questions.filter(q => {
+      const el = document.getElementById(q.id);
+      return el && el.value.trim().length > 0;
+    }).length;
+    const pct = Math.round((answered / questions.length) * 100);
+    document.getElementById('progressFill').style.width = pct + '%';
+    document.getElementById('progressPct').textContent = pct + '%';
+
+    // Update block counts
+    for (let b = 1; b <= 5; b++) {
+      const bqs = questions.filter(q => q.block === b);
+      const bAnswered = bqs.filter(q => { const el = document.getElementById(q.id); return el && el.value.trim().length > 0; }).length;
+      const el = document.getElementById('b'+b+'count');
+      if (el) el.textContent = bAnswered + ' / ' + bqs.length + ' answered';
+    }
+  }
+
+  function toggleBlock(id) {
+    const body = document.getElementById(id);
+    const chev = document.getElementById(id + 'chev');
+    if (!body) return;
+    const isOpen = body.classList.contains('open');
+    body.classList.toggle('open', !isOpen);
+    if (chev) chev.classList.toggle('open', !isOpen);
+  }
+
+  const blockNames = {1:'The Spreadsheet', 2:'The Money', 3:'Settlement with Chris', 4:'Inventory & Vendors', 5:'What You Want to Fix'};
+
+  function buildSummary() {
+    let html = '';
+    for (let b = 1; b <= 5; b++) {
+      const bqs = questions.filter(q => q.block === b);
+      html += `<div class="modal-block"><div class="modal-block-title">Block ${b} — ${blockNames[b]}</div>`;
+      bqs.forEach(q => {
+        const el = document.getElementById(q.id);
+        const val = el ? el.value.trim() : '';
+        html += `<div class="modal-q">
+          <div class="modal-q-label">${q.label}</div>
+          <div class="modal-q-text">${q.text}</div>
+          ${val ? `<div class="modal-answer">${val.replace(/</g,'&lt;')}</div>` : `<div class="modal-empty">Not answered</div>`}
+        </div>`;
+      });
+      html += '</div>';
+    }
+    return html;
+  }
+
+  function buildPlainText() {
+    let text = 'SHF ONBOARDING — CLEYTON\'S ANSWERS\n';
+    text += 'Submitted: ' + new Date().toLocaleString() + '\n';
+    text += '='.repeat(50) + '\n\n';
+    for (let b = 1; b <= 5; b++) {
+      text += `BLOCK ${b}: ${blockNames[b].toUpperCase()}\n${'─'.repeat(40)}\n`;
+      questions.filter(q => q.block === b).forEach(q => {
+        const el = document.getElementById(q.id);
+        const val = el ? el.value.trim() : '';
+        text += `\n${q.label}. ${q.text}\n`;
+        text += val ? val + '\n' : '(not answered)\n';
+      });
+      text += '\n';
+    }
+    return text;
+  }
+
+  function openSummary() {
+    document.getElementById('summaryContent').innerHTML = buildSummary();
+    const plain = buildPlainText();
+    const subject = encodeURIComponent('SHF — Cleyton Onboarding Answers · ' + new Date().toLocaleDateString());
+    const body = encodeURIComponent(plain);
+    document.getElementById('emailBtn').href = `mailto:${RECIPIENT}?subject=${subject}&body=${body}`;
+    document.getElementById('modalOverlay').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal() {
+    document.getElementById('modalOverlay').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  function copyAnswers() {
+    const text = buildPlainText();
+    if (navigator.clipboard) {
+      navigator.clipboard.writeText(text).then(() => showToast());
+    } else {
+      const ta = document.createElement('textarea');
+      ta.value = text; ta.style.position='fixed'; ta.style.opacity='0';
+      document.body.appendChild(ta); ta.select();
+      try { document.execCommand('copy'); showToast(); } catch(e) {}
+      document.body.removeChild(ta);
+    }
+  }
+
+  function showToast() {
+    const t = document.getElementById('toast');
+    t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 2500);
+  }
+
+  function clearForm() {
+    if (!confirm('Clear all your answers? This cannot be undone.')) return;
+    questions.forEach(q => {
+      const el = document.getElementById(q.id);
+      if (el) { el.value = ''; el.classList.remove('filled'); }
+    });
+    try { localStorage.removeItem(STORAGE_KEY); } catch(e) {}
+    updateProgress();
+  }
+
+  // Close modal on overlay click
+  document.getElementById('modalOverlay').addEventListener('click', function(e) {
+    if (e.target === this) closeModal();
+  });
+
+  // Init
+  loadAnswers();
+</script>
+</body>
+</html>
