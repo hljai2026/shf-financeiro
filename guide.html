@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Guia da Planilha — Sweet Home Furniture</title>
+  <style>
+    :root {
+      --navy:   #1B4F72;
+      --blue:   #2E86C1;
+      --teal:   #0E6655;
+      --green:  #1E8449;
+      --red:    #922B21;
+      --orange: #D35400;
+      --mint:   #D5F5E3;
+      --lblue:  #D6EAF8;
+      --lred:   #FDEDEC;
+      --lorange:#FEF3CD;
+      --lgray:  #F8F9FA;
+      --border: #dee2e6;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      font-size: 15px;
+      color: #212529;
+      background: #f0f4f8;
+      line-height: 1.6;
+    }
+
+    header {
+      background: var(--navy);
+      color: white;
+      padding: 28px 20px 20px;
+      text-align: center;
+    }
+    header h1 { font-size: 1.5rem; font-weight: 700; margin-bottom: 6px; }
+    header p  { font-size: 0.9rem; opacity: 0.8; }
+
+    .container { max-width: 860px; margin: 0 auto; padding: 20px 16px 60px; }
+
+    .intro-box {
+      background: white;
+      border-left: 5px solid var(--blue);
+      border-radius: 8px;
+      padding: 18px 20px;
+      margin-bottom: 24px;
+      box-shadow: 0 2px 6px rgba(0,0,0,.07);
+    }
+    .intro-box h2 { color: var(--navy); font-size: 1.1rem; margin-bottom: 8px; }
+    .intro-box p  { color: #444; font-size: 0.95rem; }
+
+    /* Legend boxes */
+    .legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 28px;
+    }
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: white;
+      border-radius: 8px;
+      padding: 10px 14px;
+      flex: 1 1 220px;
+      box-shadow: 0 1px 4px rgba(0,0,0,.08);
+    }
+    .swatch {
+      width: 20px; height: 20px;
+      border-radius: 4px;
+      flex-shrink: 0;
+    }
+    .legend-item span { font-size: 0.88rem; color: #333; }
+
+    /* Section card */
+    .section {
+      background: white;
+      border-radius: 10px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 8px rgba(0,0,0,.08);
+      overflow: hidden;
+    }
+    .section-header {
+      padding: 14px 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .tab-badge {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: white;
+      padding: 3px 10px;
+      border-radius: 12px;
+      white-space: nowrap;
+    }
+    .section-header h3 { font-size: 1.05rem; color: white; }
+    .section-body { padding: 16px 20px 20px; }
+    .section-body p { color: #444; margin-bottom: 10px; font-size: 0.95rem; }
+
+    .info-row {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 14px;
+    }
+    .info-card {
+      background: var(--lgray);
+      border-radius: 6px;
+      padding: 10px 14px;
+      flex: 1 1 180px;
+      font-size: 0.88rem;
+    }
+    .info-card strong { display: block; color: var(--navy); margin-bottom: 3px; font-size: 0.82rem; text-transform: uppercase; letter-spacing: .04em; }
+
+    /* auto vs manual tags */
+    .tag {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 2px 8px;
+      border-radius: 10px;
+      margin: 2px;
+    }
+    .tag-auto   { background: #D5F5E3; color: #1E8449; }
+    .tag-manual { background: #D6EAF8; color: #1B4F72; }
+    .tag-alert  { background: #FDEDEC; color: #922B21; }
+    .tag-warn   { background: #FEF3CD; color: #D35400; }
+
+    /* columns table */
+    table { width: 100%; border-collapse: collapse; font-size: 0.88rem; margin-top: 10px; }
+    th { background: var(--navy); color: white; padding: 8px 10px; text-align: left; }
+    td { padding: 7px 10px; border-bottom: 1px solid var(--border); color: #333; vertical-align: top; }
+    tr:last-child td { border-bottom: none; }
+    tr:nth-child(even) td { background: var(--lgray); }
+    .col-name { font-weight: 600; color: var(--navy); white-space: nowrap; }
+    .col-auto  { color: var(--green); font-size: 0.8rem; font-weight: 600; }
+
+    /* daily workflow */
+    .workflow { margin-top: 10px; }
+    .workflow-step {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      margin-bottom: 10px;
+    }
+    .step-num {
+      background: var(--blue);
+      color: white;
+      border-radius: 50%;
+      width: 26px; height: 26px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.8rem; font-weight: 700;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .step-text { font-size: 0.92rem; color: #333; }
+    .step-text strong { color: var(--navy); }
+
+    /* tip box */
+    .tip {
+      background: var(--lblue);
+      border-left: 4px solid var(--blue);
+      border-radius: 6px;
+      padding: 10px 14px;
+      font-size: 0.88rem;
+      color: #1a3a5c;
+      margin-top: 12px;
+    }
+    .tip strong { color: var(--navy); }
+
+    .warn-box {
+      background: var(--lorange);
+      border-left: 4px solid var(--orange);
+      border-radius: 6px;
+      padding: 10px 14px;
+      font-size: 0.88rem;
+      color: #5d3a00;
+      margin-top: 12px;
+    }
+
+    h4 { color: var(--navy); font-size: 0.95rem; margin: 14px 0 6px; }
+
+    @media (max-width: 600px) {
+      .info-row { flex-direction: column; }
+      .legend   { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>📊 Guia da Planilha de Controle</h1>
+  <p>Sweet Home Furniture — Saugus, MA · Versão 1.1</p>
+</header>
+
+<div class="container">
+
+  <!-- Intro -->
+  <div class="intro-box">
+    <h2>O que é esta planilha?</h2>
+    <p>Esta planilha é o <strong>sistema de controle financeiro da sua loja</strong>. Ela substitui as anotações espalhadas e centraliza tudo em um lugar só: vendas, despesas, financiamentos, estoque e o acerto com o Chris. Feita especificamente para o jeito que a SHF Saugus funciona.</p>
+    <p style="margin-top:8px">Ela tem <strong>10 abas</strong>. Você vai usar 4–5 delas no dia a dia. As outras são de suporte e você preenche conforme necessário.</p>
+  </div>
+
+  <!-- Legend -->
+  <h4 style="margin-bottom:10px;color:var(--navy);">O que significam as cores?</h4>
+  <div class="legend">
+    <div class="legend-item">
+      <div class="swatch" style="background:#1B4F72;"></div>
+      <span><strong>Azul escuro</strong> — título da aba ou cabeçalho principal</span>
+    </div>
+    <div class="legend-item">
+      <div class="swatch" style="background:#D5F5E3; border:1px solid #ccc;"></div>
+      <span><strong>Verde claro</strong> — coluna automática. <em>Não edite.</em></span>
+    </div>
+    <div class="legend-item">
+      <div class="swatch" style="background:#FDEDEC; border:1px solid #ccc;"></div>
+      <span><strong>Vermelho claro</strong> — atenção necessária (pendente, saldo em aberto)</span>
+    </div>
+    <div class="legend-item">
+      <div class="swatch" style="background:#EAFAF1; border:1px solid #ccc;"></div>
+      <span><strong>Verde suave</strong> — tudo certo (pago, zerado)</span>
+    </div>
+    <div class="legend-item">
+      <div class="swatch" style="background:#FEF3CD; border:1px solid #ccc;"></div>
+      <span><strong>Amarelo claro</strong> — status PEND SET ou NOT DY (aguardando)</span>
+    </div>
+  </div>
+
+  <!-- ──────────── ABA 1: DASHBOARD ──────────── -->
+  <div class="section">
+    <div class="section-header" style="background:var(--navy);">
+      <span class="tab-badge" style="background:rgba(255,255,255,0.2);">Aba 1</span>
+      <h3>DASHBOARD — Painel Geral</h3>
+    </div>
+    <div class="section-body">
+      <p><strong>Para que serve:</strong> visão rápida da saúde financeira da loja. Abre aqui quando quiser ver como foi o mês.</p>
+
+      <div class="info-row">
+        <div class="info-card">
+          <strong>🔄 100% automático</strong>
+          Todos os números atualizam sozinhos quando você preenche as outras abas.
+        </div>
+        <div class="info-card">
+          <strong>✏️ Você não digita nada aqui</strong>
+          É só para leitura. Nenhuma entrada manual nesta aba.
+        </div>
+        <div class="info-card">
+          <strong>📅 Muda sozinho todo mês</strong>
+          Os números "Este Mês" mudam para o mês atual automaticamente.
+        </div>
+      </div>
+
+      <h4>O que você vê no Dashboard:</h4>
+      <table>
+        <tr><th>Indicador</th><th>O que significa</th></tr>
+        <tr><td class="col-name">REVENUE (Este mês)</td><td>Total de vendas do mês atual — soma automática do SALES LOG</td></tr>
+        <tr><td class="col-name">EXPENSES (Este mês)</td><td>Total de despesas do mês — soma automática do EXPENSE LEDGER</td></tr>
+        <tr><td class="col-name">NET ESTIMATE</td><td>Receita menos despesas. Estimativa do lucro do mês.</td></tr>
+        <tr><td class="col-name">RECEIVABLES PENDING</td><td>Valor total de vendas com BALANCE DUE &gt; 0 (cliente ainda deve)</td></tr>
+        <tr><td class="col-name">FINANCING PENDING</td><td>Valor de financiamentos que a financiadora ainda não liberou</td></tr>
+        <tr><td class="col-name">SALES BY SELLER</td><td>Quanto cada vendedor vendeu neste mês</td></tr>
+        <tr><td class="col-name">BY PAYMENT METHOD</td><td>Quanto veio de CASH, CARD, KAFENE, SYNCHRONY, etc.</td></tr>
+        <tr><td class="col-name">FINANCING OUTSTANDING</td><td>Por financiadora: quanto ainda está pendente de receber</td></tr>
+      </table>
+
+      <div class="tip"><strong>Dica:</strong> Mande um print desta tela para a Hadassa no final de cada mês como parte do fechamento.</div>
+    </div>
+  </div>
+
+  <!-- ──────────── ABA 2: SALES LOG ──────────── -->
+  <div class="section">
+    <div class="section-header" style="background:#1A5276;">
+      <span class="tab-badge" style="background:rgba(255,255,255,0.2);">Aba 2</span>
+      <h3>SALES LOG — Registro de Vendas</h3>
+    </div>
+    <div class="section-body">
+      <p><strong>Para que serve:</strong> uma linha por venda. É a aba mais importante — toda venda entra aqui no momento que acontece. Substituição do FINANCIAL INVOICE LOG da planilha original.</p>
+      <p>Já tem <strong>177 linhas históricas</strong> migradas (abr/2025–mai/2026).</p>
+
+      <h4>Colunas que você preenche manualmente:</h4>
+      <table>
+        <tr><th>Coluna</th><th>O que digitar</th></tr>
+        <tr><td class="col-name">INVOICE #</td><td>Número do invoice (ex: 52143)</td></tr>
+        <tr><td class="col-name">DATE</td><td>Data da venda (MM/DD/AAAA)</td></tr>
+        <tr><td class="col-name">STORE</td><td>SAUGUS ou FRAMINGHAM — liste do menu</td></tr>
+        <tr><td class="col-name">SELLER</td><td>CLEYTON, LOGHAN, CHRYS ou MARCOS — liste do menu</td></tr>
+        <tr><td class="col-name">CUSTOMER NAME</td><td>Nome completo do cliente</td></tr>
+        <tr><td class="col-name">PAYMENT METHOD</td><td>CASH, CARD, KAFENE, SYNCHRONY, etc. — liste do menu</td></tr>
+        <tr><td class="col-name">LEASE #</td><td>Número do contrato (só para financiados)</td></tr>
+        <tr><td class="col-name">PRODUCT PRICE</td><td>Preço dos produtos (sem tax, sem delivery, sem warranty)</td></tr>
+        <tr><td class="col-name">DELIVERY FEE</td><td>Valor cobrado do cliente por delivery (se houver)</td></tr>
+        <tr><td class="col-name">WARRANTY FEE</td><td>Valor cobrado de garantia (se houver)</td></tr>
+        <tr><td class="col-name">SALES TAX</td><td>Tax calculada (Massachusetts)</td></tr>
+        <tr><td class="col-name">AMOUNT RECEIVED</td><td>Quanto o cliente já pagou até agora</td></tr>
+        <tr><td class="col-name">STATUS</td><td>PAID / PEND SET / NOT DY / PEND / FUNDED — liste do menu</td></tr>
+        <tr><td class="col-name">FUNDED DATE</td><td>Quando a financiadora aprovou</td></tr>
+        <tr><td class="col-name">DELIVERY DATE</td><td>Data que o produto foi entregue</td></tr>
+        <tr><td class="col-name">ITEM COST</td><td>Quanto você pagou pelo produto (custo da loja)</td></tr>
+        <tr><td class="col-name">FREIGHT (IN)</td><td>Frete que você pagou ao fornecedor para receber o produto</td></tr>
+        <tr><td class="col-name">COMM %</td><td>% de comissão do vendedor (ex: 0.05 para 5%)</td></tr>
+        <tr><td class="col-name">COMM PAID DATE</td><td>Data que a comissão foi paga ao vendedor</td></tr>
+        <tr><td class="col-name">NOTES</td><td>Qualquer observação adicional</td></tr>
+      </table>
+
+      <h4>Colunas automáticas <span class="tag tag-auto">verde claro — não editar</span></h4>
+      <table>
+        <tr><th>Coluna</th><th>O que calcula</th></tr>
+        <tr><td class="col-name col-auto">SUBTOTAL (K)</td><td>PRODUCT PRICE + DELIVERY FEE + WARRANTY FEE</td></tr>
+        <tr><td class="col-name col-auto">TOTAL INVOICE (M)</td><td>SUBTOTAL + SALES TAX</td></tr>
+        <tr><td class="col-name col-auto">BALANCE DUE (O)</td><td>TOTAL INVOICE – AMOUNT RECEIVED. Vermelho se o cliente ainda deve. Verde se está pago.</td></tr>
+        <tr><td class="col-name col-auto">GROSS PROFIT (U)</td><td>SUBTOTAL – ITEM COST – FREIGHT IN. Lucro bruto da venda.</td></tr>
+        <tr><td class="col-name col-auto">MARGIN % (V)</td><td>GROSS PROFIT ÷ SUBTOTAL. % de margem da venda.</td></tr>
+        <tr><td class="col-name col-auto">COMMISSION $ (X)</td><td>PRODUCT PRICE × COMM %. Valor da comissão calculado automaticamente.</td></tr>
+      </table>
+
+      <h4>O que significam os status:</h4>
+      <table>
+        <tr><th>Status</th><th>Significado</th></tr>
+        <tr><td><span class="tag tag-auto">PAID</span></td><td>Venda paga integralmente</td></tr>
+        <tr><td><span class="tag tag-warn">PEND SET</span></td><td>Payout da financiadora a caminho — aguardando receber</td></tr>
+        <tr><td><span class="tag tag-warn">NOT DY</span></td><td>Financiadora não liberou ainda — esperando delivery ou pedido do cliente</td></tr>
+        <tr><td><span class="tag tag-warn">PEND</span></td><td>Cliente parcelando diretamente com a loja (sem financiadora)</td></tr>
+        <tr><td><span class="tag tag-auto">FUNDED</span></td><td>Financiamento aprovado e valor recebido</td></tr>
+      </table>
+
+      <div class="warn-box">⚠️ <strong>Regra importante:</strong> cada linha = uma venda. Se o cliente comprou 3 itens na mesma visita, é uma única linha com o total. Só crie linha separada se for um invoice diferente.</div>
+    </div>
+  </div>
+
+  <!-- ──────────── ABA 3: FINANCING TRACKER ──────────── -->
+  <div class="section">
+    <div class="section-header" style="background:var(--teal);">
+      <span class="tab-badge" style="background:rgba(255,255,255,0.2);">Aba 3</span>
+      <h3>FINANCING TRACKER — Controle de Financiamentos</h3>
+    </div>
+    <div class="section-body">
+      <p><strong>Para que serve:</strong> rastrear cada venda financiada — quanto você espera receber da financiadora, quando recebeu, e o que ainda está pendente.</p>
+      <p><strong>Importante sobre Synchrony:</strong> os payouts caem primeiro na conta do Chris — ele transfere para você. Kafene, Progressive, Snap, Acima, etc. vão direto para o Needham Bank.</p>
+
+      <h4>O que você preenche:</h4>
+      <table>
+        <tr><th>Coluna</th><th>O que digitar</th></tr>
+        <tr><td class="col-name">DATE</td><td>Data da venda financiada</td></tr>
+        <tr><td class="col-name">FINANCING CO</td><td>SYNCHRONY, KAFENE, PROGRESSIVE, etc. — liste do menu</td></tr>
+        <tr><td class="col-name">INVOICE #</td><td>Número do invoice — vai buscar automaticamente o cliente e o valor do SALES LOG</td></tr>
+        <tr><td class="col-name">LEASE #</td><td>Número do contrato com a financiadora</td></tr>
+        <tr><td class="col-name">EXPECTED PAYOUT</td><td>Quanto a financiadora vai te pagar (normalmente menos que o total da venda)</td></tr>
+        <tr><td class="col-name">PAYOUT RECEIVED</td><td>Quanto você já recebeu de fato</td></tr>
+        <tr><td class="col-name">PAYOUT DATE</td><td>Data que o dinheiro chegou</td></tr>
+        <tr><td class="col-name">PAID TO CLEYTON</td><td>YES / NO / PARTIAL — se o dinheiro já está na sua conta</td></tr>
+        <tr><td class="col-name">STATUS</td><td>PENDING / RECEIVED / PARTIAL / CANCELLED</td></tr>
+      </table>
+
+      <h4>Automático <span class="tag tag-auto">verde claro</span></h4>
+      <table>
+        <tr><th>Coluna</th><th>O que faz</th></tr>
+        <tr><td class="col-name col-auto">CUSTOMER (D)</td><td>Busca o nome do cliente do SALES LOG pelo número do invoice. Não precisa digitar de novo.</td></tr>
+        <tr><td class="col-name col-auto">SALE AMOUNT (E)</td><td>Busca o valor total da venda do SALES LOG. Automático.</td></tr>
+        <tr><td class="col-name col-auto">OUTSTANDING (I)</td><td>EXPECTED PAYOUT – PAYOUT RECEIVED. Fica vermelho enquanto houver valor pendente.</td></tr>
+      </table>
+
+      <div class="tip"><strong>Dica:</strong> Atualize o STATUS assim que o dinheiro cair na conta. O DASHBOARD mostra o total pendente de todas as financiadoras automaticamente.</div>
+    </div>
+  </div>
+
+  <!-- ──────────── ABA 4: EXPENSE LEDGER ──────────── -->
+  <div class="section">
+    <div class="section-header" style="background:#7B241C;">
+      <span class="tab-badge" style="background:rgba(255,255,255,0.2);">Aba 4</span>
+      <h3>EXPENSE LEDGER — Registro de Despesas</h3>
+    </div>
+    <div class="section-body">
+      <p><strong>Para que serve:</strong> registrar todas as despesas operacionais da loja — aluguel, payroll, franquia, utilities, etc. Substitui a aba EXPANSES da planilha anterior.</p>
+      <p>O QuickBooks continua sendo usado, mas esta aba é o <em>backup operacional</em> da loja de Saugus especificamente.</p>
+
+      <h4>O que você preenche:</h4>
+      <table>
+        <tr><th>Coluna</th><th>O que digitar</th></tr>
+        <tr><td class="col-name">DATE</td><td>Data da despesa</td></tr>
+        <tr><td class="col-name">CATEGORY</td><td>RENT, FRANCHISE FEE, PAYROLL NET, SALES TAX, etc. — liste do menu</td></tr>
+        <tr><td class="col-name">VENDOR / DESCRIPTION</td><td>Nome do fornecedor ou descrição (ex: "Square One Mall", "ADP", "National Grid")</td></tr>
+        <tr><td class="col-name">AMOUNT</td><td>Valor da despesa</td></tr>
+        <tr><td class="col-name">PAYMENT METHOD</td><td>ACH, CHECK, CARD, CASH, AUTOPAY</td></tr>
+        <tr><td class="col-name">STATUS</td><td>PAID ou PENDING. PENDING fica vermelho — aviso visual!</td></tr>
+        <tr><td class="col-name">PAID DATE</td><td>Data que você pagou de fato</td></tr>
+        <tr><td class="col-name">NOTES</td><td>Número do cheque, referência bancária, etc.</td></tr>
+      </table>
+
+      <h4>Automático <span class="tag tag-auto">verde claro</span></h4>
+      <table>
+        <tr><th>Coluna</th><th>O que faz</th></tr>
+        <tr><td class="col-name col-auto">MONTH (B)</td><td>Preenche automaticamente com AAAA-MM quando você digita a data. Usado para filtros mensais.</td></tr>
+      </table>
+
+      <div class="warn-box">⚠️ <strong>Sales Tax:</strong> registre sempre nesta aba quando pagar ao Massachusetts DOR. Coloque STATUS = PAID e a data de pagamento. É uma obrigação legal — atraso gera multa e juros.</div>
+    </div>
+  </div>
+
+  <!-- ──────────── ABA 8: SETTLEMENT ──────────── -->
+  <div class="section">
+    <div class="section-header" style="background:var(--green);">
+      <span class="tab-badge" style="background:rgba(255,255,255,0.2);">Aba 8</span>
+      <h3>SETTLEMENT — Acerto Cleyton ↔ Chris</h3>
+    </div>
+    <div class="section-body">
+      <p><strong>Para que serve:</strong> o ledger formal de tudo que entrou e saiu no acerto entre você e o Chris — de abril até maio 2026.</p>
+      <p><strong>Status atual: FECHADO ✓</strong> — todos os batches foram liquidados. Saldo final = $0. Você pagou ao Chris um total líquido de <strong>$18,190.29</strong> ao longo do período.</p>
+
+      <div class="info-row">
+        <div class="info-card">
+          <strong>Batches 1 e 2</strong>
+          Chris te pagou (recebeu $1,977 + $25)
+        </div>
+        <div class="info-card">
+          <strong>Batches 3 e 4</strong>
+          Você pagou Chris ($4,798 + $3,282)
+        </div>
+        <div class="info-card">
+          <strong>Batches 5 e 6</strong>
+          Você pagou Chris (~$10,110 no total)
+        </div>
+      </div>
+
+      <p><strong>Daqui pra frente:</strong> a aba SETTLEMENT vai ser usada para o acerto semanal/quinzenal contínuo. No futuro, quando surgir um novo lote de transações com o Chris, você adiciona aqui.</p>
+
+      <div class="tip"><strong>Confirmado (05/30/2026):</strong> NIPOSUL ($20,192) — pago integralmente. Synchrony Nolasco + Santana — descontados no Batch 6. Sales tax — pago ao MA DOR separadamente. FRANQUIA — era duplicada, foi excluída do cálculo.</div>
+    </div>
+  </div>
+
+  <!-- ──────────── ABAS SHELL ──────────── -->
+  <div class="section">
+    <div class="section-header" style="background:#566573;">
+      <span class="tab-badge" style="background:rgba(255,255,255,0.2);">Abas 5–7, 9–10</span>
+      <h3>Abas de Suporte — Preencher conforme necessário</h3>
+    </div>
+    <div class="section-body">
+      <table>
+        <tr><th>Aba</th><th>Para que serve</th><th>Urgência</th></tr>
+        <tr>
+          <td class="col-name">COGS TRACKER</td>
+          <td>Custo detalhado por venda — para calcular margem real produto a produto</td>
+          <td><span class="tag tag-warn">Médio prazo</span></td>
+        </tr>
+        <tr>
+          <td class="col-name">CASH LOG</td>
+          <td>Posição diária de caixa — Needham Bank. Atualizar após cada depósito ou saque.</td>
+          <td><span class="tag tag-warn">Médio prazo</span></td>
+        </tr>
+        <tr>
+          <td class="col-name">PAYABLES</td>
+          <td>Contas a pagar a fornecedores — NIPOSUL, Ashley, Coaster, Global, Sleeptone</td>
+          <td><span class="tag tag-alert">Usar agora para o $45K</span></td>
+        </tr>
+        <tr>
+          <td class="col-name">SHOWROOM</td>
+          <td>Peças de exposição — custo, preço de venda, status (recebido/pago)</td>
+          <td><span class="tag tag-warn">Médio prazo</span></td>
+        </tr>
+        <tr>
+          <td class="col-name">MONTH-END</td>
+          <td>Checklist de fechamento — 14 itens para fazer no último dia do mês</td>
+          <td><span class="tag tag-auto">Mensal</span></td>
+        </tr>
+      </table>
+
+      <div class="tip"><strong>PAYABLES — prioridade agora:</strong> a dívida de $45,000 com o Chris (18x a partir de julho 2026) deve ser registrada aqui assim que começar a pagar. Cada parcela = uma linha.</div>
+    </div>
+  </div>
+
+  <!-- ──────────── ROTINA DIÁRIA ──────────── -->
+  <div class="section">
+    <div class="section-header" style="background:var(--navy);">
+      <span class="tab-badge" style="background:rgba(255,255,255,0.2);">Rotina</span>
+      <h3>O que fazer todo dia</h3>
+    </div>
+    <div class="section-body">
+      <div class="workflow">
+        <div class="workflow-step">
+          <div class="step-num">1</div>
+          <div class="step-text"><strong>A cada venda:</strong> abra o SALES LOG e adicione uma nova linha com todos os dados da venda. Não deixe acumular para o final do dia.</div>
+        </div>
+        <div class="workflow-step">
+          <div class="step-num">2</div>
+          <div class="step-text"><strong>Venda financiada:</strong> além do SALES LOG, adicione também no FINANCING TRACKER com o número do invoice e o valor esperado da financiadora.</div>
+        </div>
+        <div class="workflow-step">
+          <div class="step-num">3</div>
+          <div class="step-text"><strong>Quando receber payout da financiadora:</strong> atualize o FINANCING TRACKER — preencha PAYOUT RECEIVED e PAYOUT DATE, mude STATUS para RECEIVED.</div>
+        </div>
+        <div class="workflow-step">
+          <div class="step-num">4</div>
+          <div class="step-text"><strong>Quando pagar uma despesa:</strong> adicione no EXPENSE LEDGER com STATUS = PAID e a data.</div>
+        </div>
+        <div class="workflow-step">
+          <div class="step-num">5</div>
+          <div class="step-text"><strong>Final do mês:</strong> abra o MONTH-END CHECKLIST e marque cada item. Tire print do DASHBOARD e mande para a Hadassa.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <p style="text-align:center;color:#888;font-size:0.82rem;margin-top:30px;">
+    Sweet Home Furniture · Hadassa LJ Business Consulting · Versão 1.1 · Maio 2026
+  </p>
+</div>
+
+</body>
+</html>
