@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SHF — Plano de Trabalho Financeiro</title>
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#F5F4F0;color:#2C2C2C;line-height:1.6}
+    header{background:#1C2B3A;color:white;padding:2.5rem 1.5rem 2rem}
+    .eyebrow{font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:#D4930A;margin-bottom:.5rem}
+    h1{font-size:1.7rem;font-weight:700;line-height:1.25}
+    .subtitle{font-size:.875rem;color:rgba(255,255,255,.65);margin-top:.5rem}
+    .meta{margin-top:1.5rem;display:flex;flex-wrap:wrap;gap:1.5rem}
+    .meta-item{font-size:.78rem;color:rgba(255,255,255,.7)}
+    .meta-item strong{color:#fff;display:block;margin-bottom:.1rem}
+    .back{display:inline-block;margin:1.25rem 1.5rem 0;font-size:.8rem;color:#1C2B3A;text-decoration:none}
+    main{max-width:720px;margin:0 auto;padding:1.5rem 1.5rem 3rem;width:100%}
+    h2{font-size:1.25rem;color:#1C2B3A;margin:2.2rem 0 .8rem;padding-bottom:.4rem;border-bottom:2px solid #D4930A}
+    h3{font-size:1rem;color:#1C2B3A;margin:1.4rem 0 .5rem}
+    p{margin-bottom:.9rem;font-size:.92rem;color:#444}
+    ul{margin:0 0 1rem 1.2rem}
+    li{margin-bottom:.4rem;font-size:.92rem;color:#444}
+    .done{color:#1E8449;font-weight:600}
+    .todo{color:#B7791F;font-weight:600}
+    table{width:100%;border-collapse:collapse;margin:1rem 0;font-size:.85rem;background:#fff;border-radius:8px;overflow:hidden;box-shadow:0 1px 4px rgba(0,0,0,.06)}
+    th{background:#1C2B3A;color:#fff;text-align:left;padding:.6rem .7rem;font-size:.78rem}
+    td{padding:.55rem .7rem;border-top:1px solid #eee;vertical-align:top}
+    tr:nth-child(even) td{background:#FAFAF8}
+    .card{background:#fff;border-radius:10px;padding:1.25rem 1.5rem;margin:1rem 0;box-shadow:0 1px 4px rgba(0,0,0,.07);border-left:5px solid #D4930A}
+    .card.blue{border-left-color:#1C2B3A}
+    .card.green{border-left-color:#1E8449}
+    .card h3{margin-top:0}
+    .pill{display:inline-block;font-size:.7rem;padding:.15rem .55rem;border-radius:999px;background:#F0EFEA;color:#666;font-weight:600;margin-right:.3rem}
+    .split{display:grid;gap:1rem;grid-template-columns:1fr 1fr}
+    @media(max-width:560px){.split{grid-template-columns:1fr}h1{font-size:1.4rem}}
+    footer{text-align:center;padding:1.5rem;font-size:.75rem;color:#aaa;border-top:1px solid #E8E6E1}
+    footer strong{color:#1C2B3A}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="eyebrow">Engajamento Financeiro · Pro Bono</div>
+    <h1>Plano de Trabalho Financeiro</h1>
+    <p class="subtitle">Sweet Home Furniture &mdash; Saugus, MA</p>
+    <div class="meta">
+      <div class="meta-item"><strong>Por</strong>Hadassa &mdash; LJ Business Consulting</div>
+      <div class="meta-item"><strong>Para</strong>Cleyton</div>
+      <div class="meta-item"><strong>Versão</strong>Final &mdash; 30/05/2026</div>
+    </div>
+  </header>
+  <a href="index.html" class="back">‹ Voltar ao hub</a>
+
+  <main>
+    <h2>Onde estamos hoje</h2>
+    <p>A loja vende bem, tem fornecedores, time de 4 vendedores e o acordo com o Chris. O que faltava era <strong>organização financeira</strong> — saber, a qualquer momento, quanto entrou, quanto saiu, o que falta receber das financeiras e qual a margem real de cada venda.</p>
+    <p>Nas primeiras sessões nós:</p>
+    <ul>
+      <li><span class="done">✅ Fechamos o acerto com o Chris</span> — saldo $0. No total você pagou <strong>$18,190.29</strong> líquido ao longo dos 6 batches. Tudo confirmado e documentado.</li>
+      <li><span class="done">✅ Auditamos a planilha antiga</span> e identificamos os pontos de risco.</li>
+      <li><span class="done">✅ Construímos uma planilha nova</span> que substitui a antiga e calcula tudo sozinha.</li>
+      <li><span class="done">✅ Confirmamos</span> que NIPOSUL ($20.192), sales tax de abril e o empréstimo AMEX estão todos pagos — nada em aberto.</li>
+    </ul>
+
+    <h2>A planilha nova — o que ela faz</h2>
+    <p>11 abas. As verdes calculam sozinhas; você só preenche as vendas e despesas.</p>
+    <table>
+      <tr><th>Aba</th><th>Para quê</th><th>Você preenche?</th></tr>
+      <tr><td><strong>DASHBOARD</strong></td><td>Resumo do mês: receita, despesas, lucro, o que falta receber</td><td>Não — automático</td></tr>
+      <tr><td><strong>SALES LOG</strong></td><td>Uma linha por venda. <strong>Agora aceita pagamento dividido</strong> (até 3 métodos)</td><td>Sim</td></tr>
+      <tr><td><strong>FINANCING TRACKER</strong></td><td>Cada venda financiada: quanto a financeira deve, quanto já pagou</td><td>Sim (cliente/valor puxam sozinhos)</td></tr>
+      <tr><td><strong>EXPENSE LEDGER</strong></td><td>Todas as despesas da loja</td><td>Sim</td></tr>
+      <tr><td><strong>CHRIS REPORT</strong></td><td><strong>Extrato Cleyton↔Chris de qualquer período — pra imprimir e mandar pro Chris</strong></td><td>Não — só escolhe as datas</td></tr>
+      <tr><td><strong>COGS TRACKER</strong></td><td>Custo por venda (pra conferir a margem)</td><td>Sim</td></tr>
+      <tr><td><strong>CASH LOG</strong></td><td>Entradas e saídas do Needham Bank</td><td>Sim</td></tr>
+      <tr><td><strong>PAYABLES</strong></td><td>O que a loja deve a fornecedores</td><td>Sim</td></tr>
+      <tr><td><strong>SETTLEMENT</strong></td><td>Histórico fechado do acerto com o Chris (referência)</td><td>Não</td></tr>
+      <tr><td><strong>SHOWROOM</strong></td><td>Peças de showroom</td><td>Sim</td></tr>
+      <tr><td><strong>MONTH-END</strong></td><td>Checklist de fechamento do mês</td><td>Sim (marcar)</td></tr>
+    </table>
+
+    <div class="card">
+      <h3>Duas novidades desta sessão</h3>
+      <p><strong>1. Pagamento dividido no SALES LOG</strong> — quando o cliente paga parte no cartão e parte financiado (ou 2-3 métodos), você lança Método 1 + Valor 1, Método 2 + Valor 2, etc. O "Amount Received" soma sozinho. Os 42 casos antigos já foram consolidados automaticamente.</p>
+      <p style="margin-bottom:0"><strong>2. Aba CHRIS REPORT</strong> — substitui o print da aba CHRYS. Você escolhe o período (de/até), e ela monta o extrato: o que você deve ao Chris (COGS, franquia, comissão, estoque) e o que o Chris te deve (Synchrony, transferências), com o saldo no fim. É só imprimir ou tirar print e mandar.</p>
+    </div>
+
+    <h2>O plano — 3 fases, ~6 meses</h2>
+
+    <div class="card blue">
+      <h3>Fase 1 — Fundação (junho) <span class="pill">quase pronta</span></h3>
+      <ul style="margin-bottom:0">
+        <li><span class="done">✅</span> Acerto com o Chris fechado</li>
+        <li><span class="done">✅</span> Planilha nova construída (Operating Workbook v2)</li>
+        <li><span class="done">✅</span> Riscos mapeados e os principais já resolvidos</li>
+        <li><span class="todo">⬜</span> Você testar a planilha no dia a dia e me dizer o que ajustar</li>
+        <li><span class="todo">⬜</span> Esqueleto do plano de contas pro QuickBooks (antes de julho)</li>
+      </ul>
+    </div>
+
+    <div class="card blue">
+      <h3>Fase 2 — Processos (julho–agosto)</h3>
+      <ul style="margin-bottom:0">
+        <li>Fechamento mensal virar rotina (usando o checklist)</li>
+        <li>Financing Tracker rodando — saber o que cada financeira deve</li>
+        <li>Tracker da dívida de $45K (18x a partir de julho, credor = Chris)</li>
+        <li>QuickBooks próprio configurado quando você assinar o contrato</li>
+      </ul>
+    </div>
+
+    <div class="card blue">
+      <h3>Fase 3 — Otimização (setembro–novembro)</h3>
+      <ul style="margin-bottom:0">
+        <li>Dashboard de gestão (margem, caixa, performance por vendedor)</li>
+        <li>Reconstrução do P&amp;L do período pós-aquisição</li>
+        <li>Previsão de caixa (13 semanas)</li>
+        <li>Base de planejamento pra 2027</li>
+      </ul>
+    </div>
+
+    <h2>Quem faz o quê</h2>
+    <div class="split">
+      <div class="card blue">
+        <h3>🟦 O que eu faço (Hadassa)</h3>
+        <ul style="margin-bottom:0">
+          <li>Construir e manter a planilha e os relatórios</li>
+          <li>Corrigir o que você apontar conforme usar</li>
+          <li>Montar o setup do QuickBooks na hora certa</li>
+          <li>Construir o tracker da dívida de $45K</li>
+          <li>Fechar os meses junto e revisar os números</li>
+          <li>Estruturar processos (fechamento, sales tax)</li>
+        </ul>
+      </div>
+      <div class="card green">
+        <h3>🟩 O que depende de você (Cleyton)</h3>
+        <ul style="margin-bottom:0">
+          <li><strong>Testar a planilha no dia a dia</strong> e reportar o que ajustar</li>
+          <li>Lançar as vendas no SALES LOG</li>
+          <li>Lançar as despesas no EXPENSE LEDGER</li>
+          <li>Trazer QuickBooks P&amp;L/Balance Sheet + invoices de exemplo</li>
+          <li>Trazer extrato de uma financeira + extrato bancário</li>
+          <li>Avisar quando assinar o contrato com o Chris</li>
+        </ul>
+      </div>
+    </div>
+
+    <h2>Combinados</h2>
+    <ul>
+      <li><strong>Uma fonte só de verdade</strong> — tudo vai pra planilha nova. A antiga vira histórico só de leitura.</li>
+      <li><strong>Nada de misturar pessoal e empresa</strong> — empréstimo da loja se registra e se combina como devolver.</li>
+      <li><strong>Fechar o mês</strong> — até o 5º dia útil, o mês anterior está fechado.</li>
+      <li><strong>Você confere tudo</strong> — nenhum número é final até você confirmar que bate com a realidade.</li>
+      <li><strong>Ajustamos no caminho</strong> — a planilha é viva; você usa, aponta, eu conserto.</li>
+    </ul>
+  </main>
+
+  <footer>
+    Preparado por <strong>Hadassa · LJ Business Consulting</strong> &nbsp;·&nbsp; Engajamento pro bono &nbsp;·&nbsp; Maio de 2026
+  </footer>
+</body>
+</html>
