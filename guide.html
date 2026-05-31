@@ -193,7 +193,7 @@
 
 <header>
   <h1>📊 Guia da Planilha de Controle</h1>
-  <p>Sweet Home Furniture — Saugus, MA · Versão 1.1</p>
+  <p>Sweet Home Furniture — Saugus, MA · Versão 2.0</p>
 </header>
 
 <div class="container">
@@ -202,7 +202,7 @@
   <div class="intro-box">
     <h2>O que é esta planilha?</h2>
     <p>Esta planilha é o <strong>sistema de controle financeiro da sua loja</strong>. Ela substitui as anotações espalhadas e centraliza tudo em um lugar só: vendas, despesas, financiamentos, estoque e o acerto com o Chris. Feita especificamente para o jeito que a SHF Saugus funciona.</p>
-    <p style="margin-top:8px">Ela tem <strong>10 abas</strong>. Você vai usar 4–5 delas no dia a dia. As outras são de suporte e você preenche conforme necessário.</p>
+    <p style="margin-top:8px">Ela tem <strong>11 abas</strong>. Você vai usar 4–5 delas no dia a dia. As outras são de suporte e você preenche conforme necessário.</p>
   </div>
 
   <!-- Legend -->
@@ -279,7 +279,9 @@
     </div>
     <div class="section-body">
       <p><strong>Para que serve:</strong> uma linha por venda. É a aba mais importante — toda venda entra aqui no momento que acontece. Substituição do FINANCIAL INVOICE LOG da planilha original.</p>
-      <p>Já tem <strong>177 linhas históricas</strong> migradas (abr/2025–mai/2026).</p>
+      <p>Já tem <strong>127 vendas históricas</strong> migradas (abr/2025–mai/2026). Os casos antigos em que o cliente pagou com mais de um método já foram consolidados numa linha só.</p>
+
+      <div class="tip"><strong>🆕 Novidade — pagamento dividido:</strong> quando o cliente paga com mais de uma forma na mesma compra (ex: parte no cartão e parte financiado), você usa <strong>Método 1 + Valor 1</strong>, <strong>Método 2 + Valor 2</strong> e <strong>Método 3 + Valor 3</strong>. O AMOUNT RECEIVED soma os três sozinho. Se for um método só, preenche apenas o Método 1 e o Valor 1.</div>
 
       <h4>Colunas que você preenche manualmente:</h4>
       <table>
@@ -289,13 +291,14 @@
         <tr><td class="col-name">STORE</td><td>SAUGUS ou FRAMINGHAM — liste do menu</td></tr>
         <tr><td class="col-name">SELLER</td><td>CLEYTON, LOGHAN, CHRYS ou MARCOS — liste do menu</td></tr>
         <tr><td class="col-name">CUSTOMER NAME</td><td>Nome completo do cliente</td></tr>
-        <tr><td class="col-name">PAYMENT METHOD</td><td>CASH, CARD, KAFENE, SYNCHRONY, etc. — liste do menu</td></tr>
+        <tr><td class="col-name">MÉTODO 1 / VALOR 1</td><td>Forma de pagamento principal + quanto entrou por ela. Liste do menu.</td></tr>
+        <tr><td class="col-name">MÉTODO 2 / VALOR 2</td><td>Segunda forma de pagamento (só se houve pagamento dividido) + valor</td></tr>
+        <tr><td class="col-name">MÉTODO 3 / VALOR 3</td><td>Terceira forma (raro) + valor</td></tr>
         <tr><td class="col-name">LEASE #</td><td>Número do contrato (só para financiados)</td></tr>
         <tr><td class="col-name">PRODUCT PRICE</td><td>Preço dos produtos (sem tax, sem delivery, sem warranty)</td></tr>
         <tr><td class="col-name">DELIVERY FEE</td><td>Valor cobrado do cliente por delivery (se houver)</td></tr>
         <tr><td class="col-name">WARRANTY FEE</td><td>Valor cobrado de garantia (se houver)</td></tr>
         <tr><td class="col-name">SALES TAX</td><td>Tax calculada (Massachusetts)</td></tr>
-        <tr><td class="col-name">AMOUNT RECEIVED</td><td>Quanto o cliente já pagou até agora</td></tr>
         <tr><td class="col-name">STATUS</td><td>PAID / PEND SET / NOT DY / PEND / FUNDED — liste do menu</td></tr>
         <tr><td class="col-name">FUNDED DATE</td><td>Quando a financiadora aprovou</td></tr>
         <tr><td class="col-name">DELIVERY DATE</td><td>Data que o produto foi entregue</td></tr>
@@ -309,12 +312,13 @@
       <h4>Colunas automáticas <span class="tag tag-auto">verde claro — não editar</span></h4>
       <table>
         <tr><th>Coluna</th><th>O que calcula</th></tr>
-        <tr><td class="col-name col-auto">SUBTOTAL (K)</td><td>PRODUCT PRICE + DELIVERY FEE + WARRANTY FEE</td></tr>
-        <tr><td class="col-name col-auto">TOTAL INVOICE (M)</td><td>SUBTOTAL + SALES TAX</td></tr>
-        <tr><td class="col-name col-auto">BALANCE DUE (O)</td><td>TOTAL INVOICE – AMOUNT RECEIVED. Vermelho se o cliente ainda deve. Verde se está pago.</td></tr>
-        <tr><td class="col-name col-auto">GROSS PROFIT (U)</td><td>SUBTOTAL – ITEM COST – FREIGHT IN. Lucro bruto da venda.</td></tr>
-        <tr><td class="col-name col-auto">MARGIN % (V)</td><td>GROSS PROFIT ÷ SUBTOTAL. % de margem da venda.</td></tr>
-        <tr><td class="col-name col-auto">COMMISSION $ (X)</td><td>PRODUCT PRICE × COMM %. Valor da comissão calculado automaticamente.</td></tr>
+        <tr><td class="col-name col-auto">SUBTOTAL</td><td>PRODUCT PRICE + DELIVERY FEE + WARRANTY FEE</td></tr>
+        <tr><td class="col-name col-auto">TOTAL INVOICE</td><td>SUBTOTAL + SALES TAX</td></tr>
+        <tr><td class="col-name col-auto">AMOUNT RECEIVED</td><td>VALOR 1 + VALOR 2 + VALOR 3. Soma de tudo que o cliente pagou (todos os métodos).</td></tr>
+        <tr><td class="col-name col-auto">BALANCE DUE</td><td>TOTAL INVOICE – AMOUNT RECEIVED. Vermelho se o cliente ainda deve. Verde se está pago.</td></tr>
+        <tr><td class="col-name col-auto">GROSS PROFIT</td><td>SUBTOTAL – ITEM COST – FREIGHT IN. Lucro bruto da venda.</td></tr>
+        <tr><td class="col-name col-auto">MARGIN %</td><td>GROSS PROFIT ÷ SUBTOTAL. % de margem da venda.</td></tr>
+        <tr><td class="col-name col-auto">COMMISSION $</td><td>PRODUCT PRICE × COMM %. Valor da comissão calculado automaticamente.</td></tr>
       </table>
 
       <h4>O que significam os status:</h4>
@@ -327,7 +331,7 @@
         <tr><td><span class="tag tag-auto">FUNDED</span></td><td>Financiamento aprovado e valor recebido</td></tr>
       </table>
 
-      <div class="warn-box">⚠️ <strong>Regra importante:</strong> cada linha = uma venda. Se o cliente comprou 3 itens na mesma visita, é uma única linha com o total. Só crie linha separada se for um invoice diferente.</div>
+      <div class="warn-box">⚠️ <strong>Regra importante:</strong> cada linha = um invoice (uma venda). Se o cliente comprou 3 itens na mesma visita, é uma única linha com o total. Se ele pagou com 2 ou 3 formas diferentes, <strong>continua sendo uma linha só</strong> — você usa os campos Método 1/2/3. Só crie linha separada se for um invoice diferente.</div>
     </div>
   </div>
 
@@ -400,15 +404,49 @@
     </div>
   </div>
 
-  <!-- ──────────── ABA 8: SETTLEMENT ──────────── -->
+  <!-- ──────────── ABA 5: CHRIS REPORT ──────────── -->
   <div class="section">
-    <div class="section-header" style="background:var(--green);">
-      <span class="tab-badge" style="background:rgba(255,255,255,0.2);">Aba 8</span>
-      <h3>SETTLEMENT — Acerto Cleyton ↔ Chris</h3>
+    <div class="section-header" style="background:var(--orange);">
+      <span class="tab-badge" style="background:rgba(255,255,255,0.2);">Aba 5</span>
+      <h3>CHRIS REPORT — Extrato pro Chris</h3>
     </div>
     <div class="section-body">
-      <p><strong>Para que serve:</strong> o ledger formal de tudo que entrou e saiu no acerto entre você e o Chris — de abril até maio 2026.</p>
-      <p><strong>Status atual: FECHADO ✓</strong> — todos os batches foram liquidados. Saldo final = $0. Você pagou ao Chris um total líquido de <strong>$18,190.29</strong> ao longo do período.</p>
+      <p><strong>Para que serve:</strong> gerar o extrato do acerto com o Chris de qualquer período, prontinho pra você imprimir ou tirar print e mandar pra ele. <strong>Substitui o print da antiga aba CHRYS.</strong></p>
+
+      <div class="info-row">
+        <div class="info-card">
+          <strong>✏️ Você só escolhe as datas</strong>
+          Preencha "PERÍODO DE" e "ATÉ" (os dois campos amarelos no topo). O resto calcula sozinho.
+        </div>
+        <div class="info-card">
+          <strong>🔄 Puxa de 4 abas</strong>
+          SALES LOG, EXPENSE LEDGER, FINANCING TRACKER e PAYABLES — tudo do período escolhido.
+        </div>
+      </div>
+
+      <h4>O que o extrato mostra:</h4>
+      <table>
+        <tr><th>Bloco</th><th>O que entra</th></tr>
+        <tr><td class="col-name" style="color:var(--red)">Cleyton deve ao Chris</td><td>Custo das vendas (COGS) + franchise fee + comissão 6% + estoque comprado via Chris</td></tr>
+        <tr><td class="col-name" style="color:var(--green)">Chris deve ao Cleyton</td><td>Payouts Synchrony recebidos via Chris + transferências do Chris</td></tr>
+        <tr><td class="col-name col-auto">SALDO LÍQUIDO</td><td>A diferença — e quem paga quem no período</td></tr>
+      </table>
+
+      <div class="warn-box">⚠️ Pra o extrato ficar certo, o SALES LOG, EXPENSE LEDGER, FINANCING TRACKER e PAYABLES precisam estar em dia no período que você escolher. É por isso que vale a pena lançar tudo no dia a dia.</div>
+
+      <div class="tip"><strong>Dica:</strong> faça este extrato toda semana (ou quando combinar o acerto com o Chris) e mande o print pra ele. Assim os dois enxergam exatamente do que se trata cada valor.</div>
+    </div>
+  </div>
+
+  <!-- ──────────── ABA 9: SETTLEMENT ──────────── -->
+  <div class="section">
+    <div class="section-header" style="background:var(--green);">
+      <span class="tab-badge" style="background:rgba(255,255,255,0.2);">Aba 9</span>
+      <h3>SETTLEMENT — Histórico do Acerto (Fechado)</h3>
+    </div>
+    <div class="section-body">
+      <p><strong>Para que serve:</strong> é o registro histórico, só pra consulta, de tudo que entrou e saiu no acerto entre você e o Chris de abril a maio 2026.</p>
+      <p><strong>Status: FECHADO ✓</strong> — todos os batches foram liquidados. Saldo final = $0. Você pagou ao Chris um total líquido de <strong>$18,190.29</strong> ao longo do período.</p>
 
       <div class="info-row">
         <div class="info-card">
@@ -425,16 +463,16 @@
         </div>
       </div>
 
-      <p><strong>Daqui pra frente:</strong> a aba SETTLEMENT vai ser usada para o acerto semanal/quinzenal contínuo. No futuro, quando surgir um novo lote de transações com o Chris, você adiciona aqui.</p>
+      <p><strong>Daqui pra frente:</strong> o acerto contínuo com o Chris é feito na aba <strong>CHRIS REPORT</strong> (Aba 5), que monta o extrato automaticamente. Esta aba SETTLEMENT fica só como histórico do que já foi liquidado.</p>
 
-      <div class="tip"><strong>Confirmado (05/30/2026):</strong> NIPOSUL ($20,192) — pago integralmente. Synchrony Nolasco + Santana — descontados no Batch 6. Sales tax — pago ao MA DOR separadamente. FRANQUIA — era duplicada, foi excluída do cálculo.</div>
+      <div class="tip"><strong>Confirmado (05/30/2026):</strong> NIPOSUL ($20,192) — pago integralmente. Synchrony Nolasco + Santana — descontados no Batch 6. Sales tax — pago ao MA DOR separadamente. FRANQUIA — era duplicada, foi excluída do cálculo. AMEX ($1,802) — pago.</div>
     </div>
   </div>
 
   <!-- ──────────── ABAS SHELL ──────────── -->
   <div class="section">
     <div class="section-header" style="background:#566573;">
-      <span class="tab-badge" style="background:rgba(255,255,255,0.2);">Abas 5–7, 9–10</span>
+      <span class="tab-badge" style="background:rgba(255,255,255,0.2);">Abas 6–8, 10–11</span>
       <h3>Abas de Suporte — Preencher conforme necessário</h3>
     </div>
     <div class="section-body">
@@ -462,7 +500,7 @@
         </tr>
         <tr>
           <td class="col-name">MONTH-END</td>
-          <td>Checklist de fechamento — 14 itens para fazer no último dia do mês</td>
+          <td>Checklist de fechamento — 13 itens para fazer no último dia do mês (inclui gerar o extrato do Chris)</td>
           <td><span class="tag tag-auto">Mensal</span></td>
         </tr>
       </table>
@@ -504,7 +542,7 @@
   </div>
 
   <p style="text-align:center;color:#888;font-size:0.82rem;margin-top:30px;">
-    Sweet Home Furniture · Hadassa LJ Business Consulting · Versão 1.1 · Maio 2026
+    Sweet Home Furniture · Hadassa LJ Business Consulting · Versão 2.0 · Maio 2026
   </p>
 </div>
 
