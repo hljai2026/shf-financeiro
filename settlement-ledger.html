@@ -3,677 +3,185 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SHF — Settlement Ledger · Cleyton ↔ Chris</title>
+  <title>SHF — Acerto Cleyton ↔ Chris (Fechado)</title>
   <style>
     *{box-sizing:border-box;margin:0;padding:0}
     :root{
-      --navy:#1C2B3A;
-      --gold:#D4930A;
-      --red:#C62828;
-      --green:#2E7D32;
-      --orange:#E65100;
-      --bg:#F5F4F0;
-      --white:#fff;
-      --border:#E8E6E1;
-      --text:#2C2C2C;
-      --muted:#888;
-      --wa:#25D366;
+      --navy:#1C2B3A;--gold:#D4930A;--red:#C62828;--green:#2E7D32;
+      --bg:#F5F4F0;--white:#fff;--border:#E8E6E1;--text:#2C2C2C;--muted:#888;
     }
-    body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:var(--bg);color:var(--text);padding-bottom:5rem}
-
-    /* STICKY HEADER */
-    .site-header{background:var(--navy);color:white;padding:1.75rem 1.25rem 1.25rem;position:sticky;top:0;z-index:100;box-shadow:0 2px 8px rgba(0,0,0,.28)}
-    .header-row{display:flex;align-items:flex-start;justify-content:space-between;gap:1rem}
+    body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:var(--bg);color:var(--text);padding-bottom:3rem}
+    .site-header{background:var(--navy);color:white;padding:1.75rem 1.25rem 1.4rem}
     .eyebrow{font-size:.65rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:.25rem}
     .header-title{font-size:1.3rem;font-weight:700;line-height:1.2;color:white}
-    .header-sub{font-size:.78rem;color:rgba(255,255,255,.5);margin-top:.2rem}
-    .progress-wrap{min-width:72px;text-align:right;flex-shrink:0}
-    .progress-label{font-size:.62rem;color:rgba(255,255,255,.45);margin-bottom:.3rem}
-    .progress-bar-bg{background:rgba(255,255,255,.15);border-radius:999px;height:5px;width:72px}
-    .progress-fill{background:var(--gold);border-radius:999px;height:5px;width:0%;transition:width .35s}
-    .progress-pct{font-size:.7rem;font-weight:700;color:var(--gold);margin-top:.2rem}
-    .autosave-bar{font-size:.68rem;color:rgba(255,255,255,.4);margin-top:.6rem;display:flex;align-items:center;gap:.4rem}
-    .autosave-dot{width:6px;height:6px;border-radius:50%;background:#5DC98A;flex-shrink:0}
-
+    .header-sub{font-size:.78rem;color:rgba(255,255,255,.55);margin-top:.2rem}
     main{max-width:680px;margin:0 auto;padding:1.5rem 1.25rem}
-
-    /* NAV */
     .back-link{display:inline-flex;align-items:center;gap:.4rem;font-size:.75rem;color:var(--navy);text-decoration:none;margin-bottom:1.25rem;padding:.35rem .75rem;background:white;border-radius:6px;box-shadow:0 1px 3px rgba(0,0,0,.08)}
     .back-link:hover{background:#F0EFEA}
-
     .section-label{font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:.65rem;margin-top:1.75rem}
 
-    /* SALDO CARD */
-    .saldo-card{background:var(--navy);color:white;border-radius:12px;padding:1.4rem;margin-bottom:.75rem}
-    .saldo-eyebrow{font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-bottom:.3rem}
+    .saldo-card{background:#1E8449;color:white;border-radius:12px;padding:1.4rem;margin-bottom:.75rem}
+    .saldo-eyebrow{font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:#a8edba;margin-bottom:.3rem}
     .saldo-amount{font-size:2.1rem;font-weight:800;letter-spacing:-.02em}
-    .saldo-sub{font-size:.75rem;color:rgba(255,255,255,.55);margin-top:.15rem}
-    .saldo-note{font-size:.7rem;margin-top:.85rem;padding-top:.85rem;border-top:1px solid rgba(255,255,255,.13);color:rgba(255,255,255,.5);line-height:1.55}
-    .saldo-note strong{color:var(--gold)}
+    .saldo-sub{font-size:.78rem;color:rgba(255,255,255,.7);margin-top:.15rem}
+    .saldo-note{font-size:.72rem;margin-top:.9rem;padding-top:.9rem;border-top:1px solid rgba(255,255,255,.18);color:rgba(255,255,255,.78);line-height:1.6}
+    .saldo-note strong{color:#fff}
 
-    .scenario-row{display:grid;grid-template-columns:1fr 1fr;gap:.65rem;margin-bottom:1.5rem}
-    .sc-card{background:white;border-radius:10px;padding:1rem;box-shadow:0 1px 4px rgba(0,0,0,.07)}
-    .sc-card.active{border:2px solid var(--gold)}
-    .sc-label{font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:.3rem}
-    .sc-amount{font-size:1.25rem;font-weight:800;color:var(--navy)}
-    .sc-desc{font-size:.7rem;color:var(--muted);margin-top:.2rem;line-height:1.4}
+    .kpi-row{display:grid;grid-template-columns:1fr 1fr;gap:.65rem;margin-bottom:1.5rem}
+    .kpi-card{background:white;border-radius:10px;padding:1rem;box-shadow:0 1px 4px rgba(0,0,0,.07);text-align:center}
+    .kpi-label{font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:.35rem}
+    .kpi-amount{font-size:1.35rem;font-weight:800;color:var(--navy)}
+    .kpi-desc{font-size:.7rem;color:var(--muted);margin-top:.2rem;line-height:1.4}
 
-    /* BATCH TABLE */
-    .batch-table{width:100%;border-collapse:collapse;background:white;border-radius:10px;overflow:hidden;box-shadow:0 1px 4px rgba(0,0,0,.07);font-size:.78rem;margin-bottom:1.5rem}
-    .batch-table th{background:var(--navy);color:white;padding:.6rem .75rem;text-align:left;font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;font-weight:600}
+    .batch-table{width:100%;border-collapse:collapse;background:white;border-radius:10px;overflow:hidden;box-shadow:0 1px 4px rgba(0,0,0,.07);font-size:.8rem;margin-bottom:1rem}
+    .batch-table th{background:var(--navy);color:white;padding:.6rem .75rem;text-align:left;font-size:.62rem;letter-spacing:.08em;text-transform:uppercase;font-weight:600}
     .batch-table th:nth-child(n+2){text-align:right}
-    .batch-table td{padding:.6rem .75rem;border-bottom:1px solid var(--bg);vertical-align:middle}
+    .batch-table td{padding:.65rem .75rem;border-bottom:1px solid var(--bg);vertical-align:middle}
     .batch-table td:nth-child(n+2){text-align:right}
     .batch-table tr:last-child td{border-bottom:none}
-    .batch-table tr.confirmed td{background:#F8FDF8}
-    .batch-table tr.unconfirmed td{background:#FFFBF5}
-    .batch-table tr.total-row td{background:#F0EFEA;font-weight:700;border-top:2px solid var(--gold);font-size:.82rem}
-    .c-badge{font-size:.58rem;padding:.1rem .4rem;border-radius:4px;font-weight:600;white-space:nowrap}
-    .b-confirmed{background:#E8F5E9;color:var(--green)}
-    .b-calc{background:#FFF3E0;color:var(--orange)}
+    .batch-table tr.total-row td{background:#EAF6EC;font-weight:700;border-top:2px solid var(--green);font-size:.85rem}
     .col-pos{color:var(--red);font-weight:600}
     .col-neg{color:var(--green);font-weight:600}
-    .col-net{font-weight:700}
+    .b-ok{font-size:.58rem;padding:.12rem .45rem;border-radius:4px;font-weight:700;background:#E8F5E9;color:var(--green);white-space:nowrap}
 
-    /* QUESTION CARDS */
-    .q-list{display:flex;flex-direction:column;gap:.85rem}
-    .q-card{background:white;border-radius:10px;padding:1.1rem 1.25rem 1.1rem;box-shadow:0 1px 4px rgba(0,0,0,.07);border-left:4px solid #ccc}
-    .q-card.crit{border-left-color:var(--red)}
-    .q-card.high{border-left-color:var(--orange)}
-    .q-head{display:flex;align-items:flex-start;gap:.6rem;margin-bottom:.5rem}
-    .q-num{width:1.5rem;height:1.5rem;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.68rem;font-weight:800;flex-shrink:0;margin-top:.1rem}
-    .q-num.crit{background:var(--red);color:white}
-    .q-num.high{background:var(--orange);color:white}
-    .q-title{font-size:.88rem;font-weight:700;color:var(--navy);line-height:1.4;flex:1}
-    .q-context{font-size:.78rem;color:#555;line-height:1.55;margin-bottom:.65rem;padding-left:2.1rem}
-    .q-impact{font-size:.7rem;padding:.3rem .6rem;border-radius:5px;background:var(--bg);color:#666;margin-bottom:.65rem;margin-left:2.1rem}
-    textarea.q-input{width:100%;border:1.5px solid var(--border);border-radius:8px;padding:.6rem .85rem;font-size:.875rem;font-family:inherit;color:var(--text);background:var(--bg);resize:vertical;min-height:70px;transition:border-color .15s,box-shadow .15s;line-height:1.5;display:block}
-    textarea.q-input:focus{outline:none;border-color:var(--gold);box-shadow:0 0 0 3px rgba(212,147,10,.12);background:white}
-    textarea.q-input.filled{border-color:#B8DCCB;background:white}
+    .conf-list{display:flex;flex-direction:column;gap:.6rem;margin-bottom:1.5rem}
+    .conf-card{background:white;border-radius:9px;padding:.85rem 1rem;box-shadow:0 1px 4px rgba(0,0,0,.07);border-left:4px solid var(--green);display:flex;gap:.7rem;align-items:flex-start}
+    .conf-check{color:var(--green);font-weight:800;font-size:1rem;flex-shrink:0;margin-top:.05rem}
+    .conf-text{font-size:.82rem;color:#444;line-height:1.5}
+    .conf-text strong{color:var(--navy)}
 
-    /* SEND ZONE */
-    .send-zone{background:white;border-radius:12px;padding:1.25rem;box-shadow:0 1px 4px rgba(0,0,0,.07);margin-top:1.5rem}
-    .send-zone h3{font-size:.95rem;font-weight:700;color:var(--navy);margin-bottom:.25rem}
-    .send-zone p{font-size:.82rem;color:var(--muted);margin-bottom:1.1rem;line-height:1.55}
-    .btn{display:flex;align-items:center;justify-content:center;gap:.5rem;width:100%;padding:.85rem 1.25rem;border:none;border-radius:9px;font-size:.92rem;font-weight:700;font-family:inherit;cursor:pointer;transition:opacity .15s,transform .1s;text-decoration:none;color:white}
-    .btn:active{transform:scale(.98)}
-    .btn+.btn{margin-top:.6rem}
-    .btn-wa{background:var(--wa)}
-    .btn-wa:hover{opacity:.9}
-    .btn-gold{background:var(--gold)}
-    .btn-gold:hover{opacity:.9}
-    .btn-navy{background:var(--navy)}
-    .btn-navy:hover{opacity:.9}
-    .btn-outline{background:white;color:var(--navy);border:1.5px solid var(--border)}
-    .btn-outline:hover{border-color:var(--gold);color:var(--gold)}
-    .btn-icon{font-size:1.1rem;line-height:1}
+    .note-box{background:#EBF1F7;border-left:4px solid var(--navy);border-radius:8px;padding:.9rem 1.1rem;font-size:.8rem;color:#33475b;line-height:1.6;margin-top:.5rem}
+    .note-box strong{color:var(--navy)}
 
-    /* DIVIDER */
-    .divider{display:flex;align-items:center;gap:.75rem;margin:2rem 0 .5rem}
-    .divider::before,.divider::after{content:"";flex:1;height:1px;background:var(--border)}
-    .divider-text{font-size:.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;white-space:nowrap}
-
-    /* FULL LEDGER */
-    .batch-section{margin-bottom:1.25rem}
-    .batch-hdr{background:var(--navy);color:white;padding:.55rem .9rem;border-radius:8px 8px 0 0;display:flex;justify-content:space-between;align-items:center}
-    .batch-hdr-title{font-size:.75rem;font-weight:700}
-    .batch-hdr-badge{font-size:.6rem;padding:.12rem .4rem;border-radius:4px}
-    .bh-ok{background:#4CAF50;color:white}
-    .bh-calc{background:#FF9800;color:white}
-    .entry-tbl{width:100%;border-collapse:collapse;background:white;border-radius:0 0 8px 8px;overflow:hidden;box-shadow:0 1px 4px rgba(0,0,0,.07)}
-    .entry-tbl td{padding:.5rem .8rem;border-bottom:1px solid var(--bg);vertical-align:top;font-size:.76rem}
-    .entry-tbl tr:last-child td{border-bottom:none}
-    .entry-tbl tr.flag td{background:#FFF8F8}
-    .e-num{color:#bbb;font-size:.68rem;width:1.6rem}
-    .e-desc{font-weight:500}
-    .e-type{color:var(--muted);font-size:.68rem;margin-top:.1rem}
-    .e-flag{font-size:.65rem;color:var(--orange);margin-top:.2rem}
-    .e-dir{font-size:.68rem;font-weight:600;white-space:nowrap}
-    .dir-pos{color:var(--red)}
-    .dir-neg{color:var(--green)}
-    .e-amt{text-align:right;font-weight:600;white-space:nowrap;font-size:.8rem}
-    .sub-row td{background:#F0EFEA;font-weight:700;font-size:.76rem;border-top:1px solid var(--gold)}
-
-    /* MODAL */
-    .modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:200;overflow-y:auto;padding:1.25rem}
-    .modal-overlay.open{display:flex;align-items:flex-start;justify-content:center}
-    .modal{background:white;border-radius:14px;max-width:680px;width:100%;padding:1.4rem;position:relative}
-    .modal-close{position:absolute;top:1rem;right:1rem;background:var(--bg);border:none;border-radius:50%;width:30px;height:30px;cursor:pointer;font-size:1rem;color:var(--muted);display:flex;align-items:center;justify-content:center}
-    .modal-close:hover{color:var(--text)}
-    .modal h2{font-size:1.05rem;font-weight:700;color:var(--navy);margin-bottom:.2rem}
-    .modal-sub{font-size:.8rem;color:var(--muted);margin-bottom:1.2rem}
-    .modal-q{margin-bottom:.9rem;padding-bottom:.9rem;border-bottom:1px solid var(--border)}
-    .modal-q:last-child{border-bottom:none}
-    .modal-qlabel{font-size:.68rem;font-weight:700;color:var(--muted);margin-bottom:.15rem}
-    .modal-qtext{font-size:.78rem;color:var(--navy);font-weight:600;margin-bottom:.3rem}
-    .modal-answer{font-size:.85rem;color:var(--text);background:var(--bg);border-radius:6px;padding:.55rem .8rem;line-height:1.55;white-space:pre-wrap;word-break:break-word}
-    .modal-empty{font-size:.78rem;color:#ccc;font-style:italic}
-    .modal-actions{display:flex;flex-direction:column;gap:.55rem;margin-top:1.2rem;padding-top:1.2rem;border-top:1px solid var(--border)}
-
-    /* TOAST */
-    .toast{position:fixed;bottom:1.5rem;left:50%;transform:translateX(-50%) translateY(80px);background:var(--green);color:white;padding:.55rem 1.2rem;border-radius:999px;font-size:.8rem;font-weight:600;box-shadow:0 4px 14px rgba(0,0,0,.2);transition:transform .3s,opacity .3s;opacity:0;z-index:300;white-space:nowrap}
-    .toast.show{transform:translateX(-50%) translateY(0);opacity:1}
-
-    @media(max-width:480px){
-      .header-title{font-size:1.1rem}
-      .saldo-amount{font-size:1.7rem}
-      .scenario-row{grid-template-columns:1fr}
-      .batch-table{font-size:.72rem}
-      .batch-table td,.batch-table th{padding:.45rem .55rem}
-    }
+    footer{text-align:center;padding:1.5rem;font-size:.72rem;color:#aaa}
+    footer strong{color:var(--navy)}
+    @media(max-width:480px){.header-title{font-size:1.1rem}.saldo-amount{font-size:1.7rem}.kpi-row{grid-template-columns:1fr}}
   </style>
 </head>
 <body>
 
-<!-- STICKY HEADER -->
 <div class="site-header">
-  <div class="header-row">
-    <div>
-      <div class="eyebrow">Sweet Home Furniture · Saugus, MA</div>
-      <div class="header-title">Settlement Ledger</div>
-      <div class="header-sub">Acerto Cleyton ↔ Chris · Apr 1 – May 23, 2026</div>
-    </div>
-    <div class="progress-wrap">
-      <div class="progress-label">Respostas</div>
-      <div class="progress-bar-bg"><div class="progress-fill" id="progressFill"></div></div>
-      <div class="progress-pct" id="progressPct">0 / 5</div>
-    </div>
-  </div>
-  <div class="autosave-bar">
-    <div class="autosave-dot"></div>
-    <span id="autosaveStatus">Respostas salvas automaticamente</span>
-  </div>
+  <div class="eyebrow">Sweet Home Furniture · Saugus, MA</div>
+  <div class="header-title">Acerto Cleyton ↔ Chris</div>
+  <div class="header-sub">Abril 1 – Maio 23, 2026 · Confirmado por Cleyton em 30/05/2026</div>
 </div>
 
 <main>
   <a href="index.html" class="back-link">← Hub Financeiro</a>
 
   <!-- SALDO -->
-  <div class="section-label">Status do acerto — confirmado por Cleyton em 30/05/2026</div>
-
-  <div class="saldo-card" style="background:#1E8449;">
-    <div class="saldo-eyebrow">Acerto Cleyton ↔ Chris · Apr 1 – May 23, 2026</div>
-    <div class="saldo-amount">FECHADO ✓</div>
-    <div class="saldo-sub">Todos os batches liquidados · Saldo final = $0</div>
+  <div class="section-label">Status do acerto</div>
+  <div class="saldo-card">
+    <div class="saldo-eyebrow">Saldo final</div>
+    <div class="saldo-amount">FECHADO ✓ · $0,00</div>
+    <div class="saldo-sub">Todos os batches liquidados — nada em aberto</div>
     <div class="saldo-note">
-      <strong style="color:#a8edba;">Total pago por Cleyton ao Chris:</strong> $18,190.29 (líquido, todos os batches).<br>
-      NIPOSUL $20,192 — pago ✓ &nbsp;·&nbsp; Synchrony Nolasco + Santana — incluídos no Batch 6 ✓ &nbsp;·&nbsp; Sales tax — pago ao MA DOR ✓ &nbsp;·&nbsp; FRANQUIA — era duplicata, excluída ✓<br>
-      Convenção: sem parênteses = Cleyton paga Chris · com $(x) = Chris paga Cleyton
+      <strong>Total pago por Cleyton ao Chris:</strong> $18.190,29 (líquido, batches 3 a 6).<br>
+      Os batches 1 e 2 terminaram com o Chris devendo $25 ao Cleyton, que foi absorvido no acerto seguinte. A partir daí, o Cleyton pagou o Chris e tudo zerou.
     </div>
   </div>
 
-  <div class="scenario-row">
-    <div class="sc-card">
-      <div class="sc-label">Cenário base</div>
-      <div class="sc-amount">$40,359</div>
-      <div class="sc-desc">FRANQUIA $3K é pagamento separado</div>
+  <div class="kpi-row">
+    <div class="kpi-card">
+      <div class="kpi-label">Líquido pago ao Chris</div>
+      <div class="kpi-amount">$18.190,29</div>
+      <div class="kpi-desc">Batches 3 a 6 combinados</div>
     </div>
-    <div class="sc-card active">
-      <div class="sc-label">Se FRANQUIA duplicada</div>
-      <div class="sc-amount">$37,359</div>
-      <div class="sc-desc">$3K do acerto = mesmo da despesa mensal (mais provável)</div>
+    <div class="kpi-card">
+      <div class="kpi-label">Saldo em aberto</div>
+      <div class="kpi-amount" style="color:var(--green)">$0,00</div>
+      <div class="kpi-desc">Nada pendente entre os dois</div>
     </div>
   </div>
 
   <!-- BATCH SUMMARY -->
   <div class="section-label">Resumo por período</div>
-
   <table class="batch-table">
     <thead>
       <tr>
         <th>Período</th>
-        <th>C → Chris</th>
-        <th>Chris → C</th>
-        <th>Período</th>
-        <th>Acumulado</th>
-        <th></th>
+        <th>Saldo líquido</th>
+        <th>Direção</th>
+        <th>Status</th>
       </tr>
     </thead>
     <tbody>
-      <tr class="confirmed">
+      <tr>
         <td><strong>Batch 1</strong><br><span style="font-size:.68rem;color:#888">Apr 1–12</span></td>
-        <td class="col-pos">$10,295</td>
-        <td class="col-neg">$12,272</td>
-        <td class="col-net" style="color:var(--green)">$(1,977)</td>
-        <td style="color:var(--green);font-weight:600;font-size:.72rem">Chris deve $1,977</td>
-        <td><span class="c-badge b-confirmed">✓</span></td>
+        <td class="col-neg">$1.977</td>
+        <td style="font-size:.72rem;color:var(--green)">Chris → Cleyton</td>
+        <td><span class="b-ok">✓ liquidado</span></td>
       </tr>
-      <tr class="confirmed">
+      <tr>
         <td><strong>Batch 2</strong><br><span style="font-size:.68rem;color:#888">Apr 13–20</span></td>
-        <td class="col-pos">$8,452</td>
-        <td class="col-neg">$8,477</td>
-        <td class="col-net" style="color:var(--green)">$(25)</td>
-        <td style="color:var(--green);font-weight:600;font-size:.72rem">Chris deve $25</td>
-        <td><span class="c-badge b-confirmed">✓</span></td>
+        <td class="col-neg">$25</td>
+        <td style="font-size:.72rem;color:var(--green)">Chris → Cleyton</td>
+        <td><span class="b-ok">✓ liquidado</span></td>
       </tr>
-      <tr class="unconfirmed">
+      <tr>
         <td><strong>Batch 3</strong><br><span style="font-size:.68rem;color:#888">Apr 21–28</span></td>
-        <td class="col-pos">$25,057</td>
-        <td class="col-neg">$5,176</td>
-        <td class="col-net" style="color:var(--red)">$19,881</td>
-        <td style="color:var(--red);font-weight:600;font-size:.72rem">Cleyton deve $19,856</td>
-        <td><span class="c-badge b-calc">calc.</span></td>
+        <td class="col-pos">$4.798</td>
+        <td style="font-size:.72rem;color:var(--red)">Cleyton → Chris</td>
+        <td><span class="b-ok">✓ liquidado</span></td>
       </tr>
-      <tr class="unconfirmed">
+      <tr>
         <td><strong>Batch 4</strong><br><span style="font-size:.68rem;color:#888">Apr 28–May 3</span></td>
-        <td class="col-pos">$7,905</td>
-        <td class="col-neg">$3,003</td>
-        <td class="col-net" style="color:var(--red)">$4,902</td>
-        <td style="color:var(--red);font-weight:600;font-size:.72rem">Cleyton deve $24,759</td>
-        <td><span class="c-badge b-calc">calc.</span></td>
+        <td class="col-pos">$3.282</td>
+        <td style="font-size:.72rem;color:var(--red)">Cleyton → Chris</td>
+        <td><span class="b-ok">✓ liquidado</span></td>
       </tr>
-      <tr class="unconfirmed">
-        <td><strong>Misc</strong><br><span style="font-size:.68rem;color:#888">~May 11</span></td>
-        <td class="col-pos">$2,094</td>
-        <td class="col-neg">—</td>
-        <td class="col-net" style="color:var(--red)">$2,094</td>
-        <td style="color:var(--red);font-weight:600;font-size:.72rem">Cleyton deve $26,853</td>
-        <td><span class="c-badge b-calc">calc.</span></td>
+      <tr>
+        <td><strong>Batch 5 + avulsos</strong><br><span style="font-size:.68rem;color:#888">May 5–13</span></td>
+        <td class="col-pos">~$5.055</td>
+        <td style="font-size:.72rem;color:var(--red)">Cleyton → Chris</td>
+        <td><span class="b-ok">✓ liquidado</span></td>
       </tr>
-      <tr class="unconfirmed">
-        <td><strong>Batch 5</strong><br><span style="font-size:.68rem;color:#888">May 5–13</span></td>
-        <td class="col-pos">$5,971</td>
-        <td class="col-neg">$1,500</td>
-        <td class="col-net" style="color:var(--red)">$4,471</td>
-        <td style="color:var(--red);font-weight:600;font-size:.72rem">Cleyton deve $31,323</td>
-        <td><span class="c-badge b-calc">calc.</span></td>
-      </tr>
-      <tr class="unconfirmed">
-        <td><strong>Batch 6+Final</strong><br><span style="font-size:.68rem;color:#888">May 13–23</span></td>
-        <td class="col-pos">$21,786</td>
-        <td class="col-neg">$12,750</td>
-        <td class="col-net" style="color:var(--red)">$9,036</td>
-        <td style="color:var(--red);font-weight:600;font-size:.72rem">Cleyton deve $40,359</td>
-        <td><span class="c-badge b-calc">calc.</span></td>
+      <tr>
+        <td><strong>Batch 6 + Final</strong><br><span style="font-size:.68rem;color:#888">May 13–23</span></td>
+        <td class="col-pos">~$5.055</td>
+        <td style="font-size:.72rem;color:var(--red)">Cleyton → Chris</td>
+        <td><span class="b-ok">✓ liquidado</span></td>
       </tr>
       <tr class="total-row">
-        <td><strong>TOTAL</strong></td>
-        <td class="col-pos">$81,560</td>
-        <td class="col-neg">$41,201</td>
-        <td colspan="2" style="text-align:right;color:var(--red)"><strong>$40,359.34 Cleyton deve ao Chris</strong></td>
-        <td></td>
+        <td><strong>TOTAL LÍQUIDO</strong></td>
+        <td class="col-pos">$18.190,29</td>
+        <td colspan="2" style="text-align:right;color:var(--green)"><strong>Saldo final $0 ✓</strong></td>
       </tr>
     </tbody>
   </table>
+  <div class="note-box">Os valores exatos dos Batches 5 e 6 estão na aba <strong>CHRYS</strong> da planilha original do Cleyton. Os Batches 3 e 4 foram corrigidos e confirmados pelo Cleyton em 30/05 (os números antigos calculados a partir das notas de texto estavam incompletos).</div>
 
-  <!-- QUESTIONS (interactive) -->
-  <div class="section-label">Perguntas a confirmar com Cleyton</div>
-
-  <div class="q-list">
-
-    <div class="q-card crit">
-      <div class="q-head">
-        <div class="q-num crit">1</div>
-        <div class="q-title">O saldo de ~$40K bate com o que você tem na cabeça?</div>
-      </div>
-      <div class="q-context">Calculei todos os 49 lançamentos. O resultado é $40.359 que você deve ao Chris (ou $37.359 se o FRANQUIA for o mesmo da despesa mensal). Esse número faz sentido?</div>
-      <div class="q-impact">💡 Se o número for bem diferente: a gente rastreia onde o ledger diverge antes de qualquer outra conversa.</div>
-      <textarea class="q-input" id="a1" rows="3" placeholder="Resposta do Cleyton..." oninput="saveAndUpdate()"></textarea>
+  <!-- CONFIRMAÇÕES -->
+  <div class="section-label">Pontos confirmados em 30/05/2026</div>
+  <div class="conf-list">
+    <div class="conf-card">
+      <div class="conf-check">✓</div>
+      <div class="conf-text"><strong>NIPOSUL $20.192</strong> — estoque de bedding comprado via Chris (4 entradas). Pago integralmente. Separado da dívida de $45K de showroom que começa em julho 2026.</div>
     </div>
-
-    <div class="q-card crit">
-      <div class="q-head">
-        <div class="q-num crit">2</div>
-        <div class="q-title">FRANQUIA $3.000 — está duplicada no acerto?</div>
-      </div>
-      <div class="q-context">No acerto (Batch 3, entrada #17) tem FRANQUIA $3.000. No controle de despesas de abril também tem FRANQUIA $3.000 marcada como paga em 28/04. É o mesmo pagamento ou dois separados?</div>
-      <div class="q-impact">💰 Se for o mesmo: saldo cai de $40.359 para $37.359 (−$3.000).</div>
-      <textarea class="q-input" id="a2" rows="3" placeholder="Resposta do Cleyton..." oninput="saveAndUpdate()"></textarea>
+    <div class="conf-card">
+      <div class="conf-check">✓</div>
+      <div class="conf-text"><strong>Synchrony — Nolasco ($4.936) + Santana ($5.778)</strong> — os payouts já foram descontados no Batch 6. Chris já repassou.</div>
     </div>
-
-    <div class="q-card crit">
-      <div class="q-head">
-        <div class="q-num crit">3</div>
-        <div class="q-title">NIPOSUL $20.192 — já está pago ou tem saldo aberto?</div>
-      </div>
-      <div class="q-context">4 entradas de bedding do NIPOSUL no acerto: $7.593 + $4.799 + $3.282 + $4.518 = $20.192. Esse é estoque que você comprou através do Chris. Já acertou esse valor com ele? Tem invoice do NIPOSUL?</div>
-      <div class="q-impact">📦 NIPOSUL aparece nos Batches 3, 4, 5 e Final. Precisamos de invoice para documentar.</div>
-      <textarea class="q-input" id="a3" rows="3" placeholder="Resposta do Cleyton..." oninput="saveAndUpdate()"></textarea>
+    <div class="conf-card">
+      <div class="conf-check">✓</div>
+      <div class="conf-text"><strong>Sales tax de abril ($1.649,60)</strong> — pago ao Massachusetts DOR separadamente. Não passa pela conta do Chris.</div>
     </div>
-
-    <div class="q-card high">
-      <div class="q-head">
-        <div class="q-num high">4</div>
-        <div class="q-title">Synchrony — Nolasco ($4.936) e Santana ($5.778) — o Chris já te pagou?</div>
-      </div>
-      <div class="q-context">Esses dois payouts do Synchrony ($10.714 no total) estão no acerto como crédito seu — Chris te deve esse dinheiro. Ele já mandou pra você?</div>
-      <div class="q-impact">💳 $10.714 já estão contabilizados como crédito. Se não recebeu → cobrar Chris separado.</div>
-      <textarea class="q-input" id="a4" rows="3" placeholder="Resposta do Cleyton..." oninput="saveAndUpdate()"></textarea>
+    <div class="conf-card">
+      <div class="conf-check">✓</div>
+      <div class="conf-text"><strong>FRANQUIA $3.000</strong> — era duplicata (o mesmo pagamento aparecia no controle de despesas e no acerto). Excluída do cálculo.</div>
     </div>
-
-    <div class="q-card high">
-      <div class="q-head">
-        <div class="q-num high">5</div>
-        <div class="q-title">Sales tax de abril — $1.649 — foi pago para o Massachusetts DOR?</div>
-      </div>
-      <div class="q-context">No controle de despesas de abril tem $1.649,60 de sales tax sem data de pagamento. O Massachusetts cobra multa e juros sobre atraso.</div>
-      <div class="q-impact">⚠️ Urgente — MA cobra 5% de multa + 1%/mês de juros sobre atraso.</div>
-      <textarea class="q-input" id="a5" rows="3" placeholder="Resposta do Cleyton..." oninput="saveAndUpdate()"></textarea>
-    </div>
-
-  </div>
-
-  <!-- SEND ZONE -->
-  <div class="send-zone">
-    <h3>Enviar respostas para a Hadassa</h3>
-    <p>Quando terminar de responder, escolha como enviar. Suas respostas estão salvas no celular — você pode continuar depois sem perder nada.</p>
-    <button type="button" class="btn btn-wa" onclick="openModal()">
-      <span class="btn-icon">📲</span> Enviar pelo WhatsApp
-    </button>
-    <a id="emailBtn" href="#" class="btn btn-gold" onclick="buildEmailLink()">
-      <span class="btn-icon">✉️</span> Enviar por E-mail
-    </a>
-    <button type="button" class="btn btn-navy" onclick="copyAnswers()">
-      <span class="btn-icon">📋</span> Copiar respostas
-    </button>
-    <button type="button" class="btn btn-outline" style="color:var(--muted);font-size:.78rem;padding:.55rem" onclick="clearAnswers()">Apagar todas as respostas</button>
-  </div>
-
-  <!-- FULL LEDGER DIVIDER -->
-  <div class="divider"><span class="divider-text">Todos os lançamentos</span></div>
-  <p style="font-size:.78rem;color:var(--muted);margin-bottom:1.25rem;line-height:1.6">49 entradas extraídas das notas de texto do Expense Ledger. <span style="background:#FFF8F8;color:var(--orange);padding:.1rem .3rem;border-radius:3px;font-size:.72rem">Fundo laranja</span> = entrada com pergunta em aberto.</p>
-
-  <!-- BATCH 1 -->
-  <div class="batch-section">
-    <div class="batch-hdr">
-      <span class="batch-hdr-title">Batch 1 — Apr 1–12, 2026</span>
-      <span class="batch-hdr-badge bh-ok">✓ Confirmado</span>
-    </div>
-    <table class="entry-tbl">
-      <tr><td class="e-num">#1</td><td><div class="e-desc">CHRYS ORDERS 4/1–4/12</div><div class="e-type">Receita de vendas</div></td><td><div class="e-dir dir-pos">Cleyton→Chris</div></td><td class="e-amt col-pos">$10,294.91</td></tr>
-      <tr><td class="e-num">#2</td><td><div class="e-desc">DIFERENCA ALUGUEL SAUGUS</div><div class="e-type">Ajuste aluguel</div></td><td><div class="e-dir dir-neg">Chris→Cleyton</div></td><td class="e-amt col-neg">$783.00</td></tr>
-      <tr><td class="e-num">#3</td><td><div class="e-desc">COMISSAO 3/31</div><div class="e-type">Comissão março</div></td><td><div class="e-dir dir-neg">Chris→Cleyton</div></td><td class="e-amt col-neg">$2,050.00</td></tr>
-      <tr><td class="e-num">#4</td><td><div class="e-desc">SYNCHRONY ORDER 50823</div><div class="e-type">Payout Synchrony</div></td><td><div class="e-dir dir-neg">Chris→Cleyton</div></td><td class="e-amt col-neg">$980.32</td></tr>
-      <tr><td class="e-num">#5</td><td><div class="e-desc">COMISSAO FEVEREIRO (RESTO)</div><div class="e-type">Comissão fev restante</div></td><td><div class="e-dir dir-neg">Chris→Cleyton</div></td><td class="e-amt col-neg">$370.77</td></tr>
-      <tr><td class="e-num">#6</td><td><div class="e-desc">HORAS 3/30 – FRAMINGHAM</div><div class="e-type">Horas trabalhadas</div></td><td><div class="e-dir dir-neg">Chris→Cleyton</div></td><td class="e-amt col-neg">$160.00</td></tr>
-      <tr><td class="e-num">#7</td><td><div class="e-desc">PROGRESSIVE – QUITACAO</div><div class="e-type">Payout Progressive</div></td><td><div class="e-dir dir-neg">Chris→Cleyton</div></td><td class="e-amt col-neg">$1,741.86</td></tr>
-      <tr><td class="e-num">#8</td><td><div class="e-desc">EMPRESTIMO 4/16</div><div class="e-type">Reembolso empréstimo</div></td><td><div class="e-dir dir-neg">Chris→Cleyton</div></td><td class="e-amt col-neg">$700.00</td></tr>
-      <tr><td class="e-num">#9</td><td><div class="e-desc">PAGAMENTO</div><div class="e-type">Transferência</div></td><td><div class="e-dir dir-neg">Chris→Cleyton</div></td><td class="e-amt col-neg">$5,485.81</td></tr>
-      <tr class="sub-row"><td colspan="3"><strong>Batch 1 total ✓</strong> — $(1,976.85) · Chris deve Cleyton $1.977</td><td class="e-amt" style="color:var(--green)">Acum: Chris $1.977</td></tr>
-    </table>
-  </div>
-
-  <!-- BATCH 2 -->
-  <div class="batch-section">
-    <div class="batch-hdr">
-      <span class="batch-hdr-title">Batch 2 — Apr 13–20, 2026</span>
-      <span class="batch-hdr-badge bh-ok">✓ Confirmado</span>
-    </div>
-    <table class="entry-tbl">
-      <tr><td class="e-num">#10</td><td><div class="e-desc">ORDERS 4/13–4/20</div><div class="e-type">Receita de vendas</div></td><td><div class="e-dir dir-pos">Cleyton→Chris</div></td><td class="e-amt col-pos">$8,451.79</td></tr>
-      <tr><td class="e-num">#11</td><td><div class="e-desc">TRANSFER 4/17</div><div class="e-type">Transferência</div></td><td><div class="e-dir dir-neg">Chris→Cleyton</div></td><td class="e-amt col-neg">$6,500.00</td></tr>
-      <tr><td class="e-num">#12</td><td><div class="e-desc">PENDING BALANCE (carry-forward B1)</div><div class="e-type">Saldo anterior</div></td><td><div class="e-dir dir-neg">Chris→Cleyton</div></td><td class="e-amt col-neg">$1,976.85</td></tr>
-      <tr class="sub-row"><td colspan="3"><strong>Batch 2 total ✓</strong> — $(25.06) · Chris deve Cleyton $25</td><td class="e-amt" style="color:var(--green)">Acum: Chris $25</td></tr>
-    </table>
-  </div>
-
-  <!-- BATCH 3 -->
-  <div class="batch-section">
-    <div class="batch-hdr">
-      <span class="batch-hdr-title">Batch 3 — Apr 21–28, 2026</span>
-      <span class="batch-hdr-badge bh-calc">Calculado</span>
-    </div>
-    <table class="entry-tbl">
-      <tr><td class="e-num">#13</td><td><div class="e-desc">ORDERS 4/21–4/28</div><div class="e-type">Receita de vendas</div></td><td><div class="e-dir dir-pos">Cleyton→Chris</div></td><td class="e-amt col-pos">$6,316.61</td></tr>
-      <tr><td class="e-num">#14</td><td><div class="e-desc">ORDER 50571 – OMAR</div><div class="e-type">Pedido individual</div></td><td><div class="e-dir dir-pos">Cleyton→Chris</div></td><td class="e-amt col-pos">$2,640.00</td></tr>
-      <tr><td class="e-num">#15</td><td><div class="e-desc">MARIAN GARCIA – DIF GARANTIA</div><div class="e-type">Ajuste warranty</div></td><td><div class="e-dir dir-pos">Cleyton→Chris</div></td><td class="e-amt col-pos">$212.50</td></tr>
-      <tr><td class="e-num">#16</td><td><div class="e-desc">DIF ANGEL</div><div class="e-type">Ajuste de pedido</div></td><td><div class="e-dir dir-pos">Cleyton→Chris</div></td><td class="e-amt col-pos">$600.00</td></tr>
-      <tr class="flag"><td class="e-num">#17</td><td><div class="e-desc">FRANQUIA</div><div class="e-type">Franchise fee</div><div class="e-flag">⚠️ Pergunta 2 — mesmo $3K do controle de despesas?</div></td><td><div class="e-dir dir-pos">Cleyton→Chris</div></td><td class="e-amt col-pos">$3,000.00</td></tr>
-      <tr><td class="e-num">#18</td><td><div class="e-desc">DIF HARTFORD – NATHANE</div><div class="e-type">Reembolso seguro</div></td><td><div class="e-dir dir-neg">Chris→Cleyton</div></td><td class="e-amt col-neg">$310.00</td></tr>
-      <tr><td class="e-num">#19</td><td><div class="e-desc">TRANSFERENCIA 4/21</div><div class="e-type">Transferência</div></td><td><div class="e-dir dir-neg">Chris→Cleyton</div></td><td class="e-amt col-neg">$1,976.85</td></tr>
-      <tr><td class="e-num">#20</td><td><div class="e-desc">SYNCHRONY ORDER 51484</div><div class="e-type">Payout Synchrony</div></td><td><div class="e-dir dir-neg">Chris→Cleyton</div></td><td class="e-amt col-neg">$2,889.30</td></tr>
-      <tr class="flag"><td class="e-num">#21</td><td><div class="e-desc">TOTAL SHBEDDING TO NIPOSUL</div><div class="e-type">Estoque bedding · NIPOSUL 1/4</div><div class="e-flag">⚠️ Pergunta 3 — pago ao Chris? Invoice?</div></td><td><div class="e-dir dir-pos">Cleyton→Chris</div></td><td class="e-amt col-pos">$7,592.96</td></tr>
-      <tr><td class="e-num">#22</td><td><div class="e-desc">COMMISSION CHRYS APRIL</div><div class="e-type">Comissão Chrys</div></td><td><div class="e-dir dir-pos">Cleyton→Chris</div></td><td class="e-amt col-pos">$1,672.76</td></tr>
-      <tr><td class="e-num">#23</td><td><div class="e-desc">SHOWROOM COASTER 600536P</div><div class="e-type">Item showroom</div></td><td><div class="e-dir dir-pos">Cleyton→Chris</div></td><td class="e-amt col-pos">$1,031.01</td></tr>
-      <tr><td class="e-num">#24</td><td><div class="e-desc">SHOWROOM GLOBAL U0222</div><div class="e-type">Item showroom</div></td><td><div class="e-dir dir-pos">Cleyton→Chris</div></td><td class="e-amt col-pos">$838.88</td></tr>
-      <tr><td class="e-num">#25</td><td><div class="e-desc">SLEEPTONE</div><div class="e-type">Estoque bedding</div></td><td><div class="e-dir dir-pos">Cleyton→Chris</div></td><td class="e-amt col-pos">$199.00</td></tr>
-      <tr><td class="e-num">#26</td><td><div class="e-desc">CLASSYART</div><div class="e-type">Estoque</div></td><td><div class="e-dir dir-pos">Cleyton→Chris</div></td><td class="e-amt col-pos">$953.58</td></tr>
-      <tr class="sub-row"><td colspan="3"><strong>Batch 3 calculado</strong> — $19,881 · Cleyton deve Chris</td><td class="e-amt col-pos">Acum: Cleyton $19,856</td></tr>
-    </table>
-  </div>
-
-  <!-- BATCH 4 -->
-  <div class="batch-section">
-    <div class="batch-hdr">
-      <span class="batch-hdr-title">Batch 4 — Apr 28 – May 3, 2026</span>
-      <span class="batch-hdr-badge bh-calc">Calculado</span>
-    </div>
-    <table class="entry-tbl">
-      <tr><td class="e-num">#27</td><td><div class="e-desc">ORDERS 4/28–5/3</div><div class="e-type">Receita de vendas</div></td><td><div class="e-dir dir-pos">Cleyton→Chris</div></td><td class="e-amt col-pos">$3,106.48</td></tr>
-      <tr><td class="e-num">#28</td><td><div class="e-desc">DIFERENCA ALUGUEL</div><div class="e-type">Ajuste aluguel</div></td><td><div class="e-dir dir-neg">Chris→Cleyton</div></td><td class="e-amt col-neg">$783.00</td></tr>
-      <tr><td class="e-num">#29</td><td><div class="e-desc">COMMISSION CLEYTON MARCH</div><div class="e-type">Comissão própria março</div></td><td><div class="e-dir dir-neg">Chris→Cleyton</div></td><td class="e-amt col-neg">$733.08</td></tr>
-      <tr><td class="e-num">#30</td><td><div class="e-desc">KAFENE</div><div class="e-type">Payout Kafene</div></td><td><div class="e-dir dir-neg">Chris→Cleyton</div></td><td class="e-amt col-neg">$1,486.80</td></tr>
-      <tr class="flag"><td class="e-num">#31</td><td><div class="e-desc">TOTAL SHBEDDING TO NIPOSUL</div><div class="e-type">Estoque bedding · NIPOSUL 2/4</div><div class="e-flag">⚠️ NIPOSUL running: $12,392</div></td><td><div class="e-dir dir-pos">Cleyton→Chris</div></td><td class="e-amt col-pos">$4,798.83</td></tr>
-      <tr class="sub-row"><td colspan="3"><strong>Batch 4 calculado</strong> — $4,902 · Cleyton deve Chris</td><td class="e-amt col-pos">Acum: Cleyton $24,759</td></tr>
-    </table>
-  </div>
-
-  <!-- MISC -->
-  <div class="batch-section">
-    <div class="batch-hdr">
-      <span class="batch-hdr-title">Itens avulsos — ~May 11, 2026</span>
-      <span class="batch-hdr-badge bh-calc">Calculado</span>
-    </div>
-    <table class="entry-tbl">
-      <tr><td class="e-num">#32</td><td><div class="e-desc">Order Coaster 5/11</div><div class="e-type">Item showroom</div></td><td><div class="e-dir dir-pos">Cleyton→Chris</div></td><td class="e-amt col-pos">$1,767.30</td></tr>
-      <tr><td class="e-num">#33</td><td><div class="e-desc">Grace Melvin (peace showroom)</div><div class="e-type">Item showroom</div></td><td><div class="e-dir dir-pos">Cleyton→Chris</div></td><td class="e-amt col-pos">$327.00</td></tr>
-      <tr class="sub-row"><td colspan="3"><strong>Misc calculado</strong> — $2,094 · Cleyton deve Chris</td><td class="e-amt col-pos">Acum: Cleyton $26,853</td></tr>
-    </table>
-  </div>
-
-  <!-- BATCH 5 -->
-  <div class="batch-section">
-    <div class="batch-hdr">
-      <span class="batch-hdr-title">Batch 5 — May 5–13, 2026</span>
-      <span class="batch-hdr-badge bh-calc">Calculado</span>
-    </div>
-    <table class="entry-tbl">
-      <tr><td class="e-num">#34</td><td><div class="e-desc">ORDERS 5/5–5/13</div><div class="e-type">Receita de vendas</div></td><td><div class="e-dir dir-pos">Cleyton→Chris</div></td><td class="e-amt col-pos">$2,088.11</td></tr>
-      <tr><td class="e-num">#35</td><td><div class="e-desc">DELIVERIES</div><div class="e-type">Receita de delivery</div></td><td><div class="e-dir dir-pos">Cleyton→Chris</div></td><td class="e-amt col-pos">$600.00</td></tr>
-      <tr><td class="e-num">#36</td><td><div class="e-desc">TRANSFERENCIA 5/11</div><div class="e-type">Transferência</div></td><td><div class="e-dir dir-neg">Chris→Cleyton</div></td><td class="e-amt col-neg">$1,000.00</td></tr>
-      <tr><td class="e-num">#37</td><td><div class="e-desc">TRANSFERENCIA 5/14</div><div class="e-type">Transferência</div></td><td><div class="e-dir dir-neg">Chris→Cleyton</div></td><td class="e-amt col-neg">$500.00</td></tr>
-      <tr class="flag"><td class="e-num">#38</td><td><div class="e-desc">TOTAL SH BEDDING TO NIPOSUL</div><div class="e-type">Estoque bedding · NIPOSUL 3/4</div><div class="e-flag">⚠️ NIPOSUL running: $15,674</div></td><td><div class="e-dir dir-pos">Cleyton→Chris</div></td><td class="e-amt col-pos">$3,282.41</td></tr>
-      <tr class="sub-row"><td colspan="3"><strong>Batch 5 calculado</strong> — $4,471 · Cleyton deve Chris</td><td class="e-amt col-pos">Acum: Cleyton $31,323</td></tr>
-    </table>
-  </div>
-
-  <!-- BATCH 6 + FINAL -->
-  <div class="batch-section">
-    <div class="batch-hdr">
-      <span class="batch-hdr-title">Batch 6 + Final — May 13–23, 2026</span>
-      <span class="batch-hdr-badge bh-calc">Calculado</span>
-    </div>
-    <table class="entry-tbl">
-      <tr class="flag"><td class="e-num">#39</td><td><div class="e-desc">SYNCHRONY – ANIBAL NOLASCO</div><div class="e-type">Payout Synchrony</div><div class="e-flag">⚠️ Pergunta 4 — Chris já pagou?</div></td><td><div class="e-dir dir-neg">Chris→Cleyton</div></td><td class="e-amt col-neg">$4,936.36</td></tr>
-      <tr class="flag"><td class="e-num">#40</td><td><div class="e-desc">SYNCHRONY – MABEL SANTANA</div><div class="e-type">Payout Synchrony</div><div class="e-flag">⚠️ Pergunta 4 — total com #39: $10.715</div></td><td><div class="e-dir dir-neg">Chris→Cleyton</div></td><td class="e-amt col-neg">$5,778.60</td></tr>
-      <tr><td class="e-num">#41</td><td><div class="e-desc">KAFENE – RODRIGO DECHAN</div><div class="e-type">Payout Kafene</div></td><td><div class="e-dir dir-neg">Chris→Cleyton</div></td><td class="e-amt col-neg">$1,035.30</td></tr>
-      <tr><td class="e-num">#42</td><td><div class="e-desc">TRANSFERENCIA 5/21</div><div class="e-type">Transferência</div></td><td><div class="e-dir dir-neg">Chris→Cleyton</div></td><td class="e-amt col-neg">$1,000.00</td></tr>
-      <tr><td class="e-num">#43</td><td><div class="e-desc">SHOWROOM ASHLEY</div><div class="e-type">Item showroom</div></td><td><div class="e-dir dir-pos">Cleyton→Chris</div></td><td class="e-amt col-pos">$2,772.63</td></tr>
-      <tr><td class="e-num">#44</td><td><div class="e-desc">SHOWROOM ASHLEY (2ª ordem)</div><div class="e-type">Item showroom</div></td><td><div class="e-dir dir-pos">Cleyton→Chris</div></td><td class="e-amt col-pos">$1,223.54</td></tr>
-      <tr><td class="e-num">#45</td><td><div class="e-desc">SLEEPTONE</div><div class="e-type">Estoque bedding</div></td><td><div class="e-dir dir-pos">Cleyton→Chris</div></td><td class="e-amt col-pos">$772.00</td></tr>
-      <tr><td class="e-num">#46</td><td><div class="e-desc">MALOUF</div><div class="e-type">Estoque bedding</div></td><td><div class="e-dir dir-pos">Cleyton→Chris</div></td><td class="e-amt col-pos">$345.33</td></tr>
-      <tr><td class="e-num">#47</td><td><div class="e-desc">SHOWROOM COASTER</div><div class="e-type">Item showroom</div></td><td><div class="e-dir dir-pos">Cleyton→Chris</div></td><td class="e-amt col-pos">$3,044.89</td></tr>
-      <tr><td class="e-num">#48</td><td><div class="e-desc">ORDERS 5/13–5/23</div><div class="e-type">Receita de vendas</div></td><td><div class="e-dir dir-pos">Cleyton→Chris</div></td><td class="e-amt col-pos">$9,109.87</td></tr>
-      <tr class="flag"><td class="e-num">#49</td><td><div class="e-desc">TOTAL SH BEDDING TO NIPOSUL</div><div class="e-type">Estoque bedding · NIPOSUL 4/4</div><div class="e-flag">⚠️ NIPOSUL TOTAL: $20.192 em 4 entradas</div></td><td><div class="e-dir dir-pos">Cleyton→Chris</div></td><td class="e-amt col-pos">$4,518.00</td></tr>
-      <tr class="sub-row"><td colspan="3"><strong>Batch 6+Final calculado</strong> — $9,036 · Cleyton deve Chris</td><td class="e-amt col-pos">Acum: Cleyton $40,359</td></tr>
-    </table>
-  </div>
-
-  <!-- FINAL BALANCE -->
-  <div style="background:var(--navy);border-radius:10px;padding:1.2rem;color:white">
-    <div style="font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-bottom:.5rem">Saldo final calculado · Apr 1 – May 23, 2026</div>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem">
-      <div><div style="font-size:.7rem;color:rgba(255,255,255,.5)">Cleyton → Chris</div><div style="font-size:1.1rem;font-weight:700;color:#FF6B6B;margin-top:.15rem">$81,560.09</div></div>
-      <div><div style="font-size:.7rem;color:rgba(255,255,255,.5)">Chris → Cleyton</div><div style="font-size:1.1rem;font-weight:700;color:#69DB7C;margin-top:.15rem">$41,200.75</div></div>
-    </div>
-    <div style="border-top:1px solid rgba(255,255,255,.12);padding-top:.9rem">
-      <div style="font-size:.7rem;color:rgba(255,255,255,.5)">Saldo líquido</div>
-      <div style="font-size:1.7rem;font-weight:800;color:#FF6B6B;margin-top:.15rem">$40,359.34</div>
-      <div style="font-size:.75rem;color:rgba(255,255,255,.5);margin-top:.15rem">Cleyton deve ao Chris · <span style="color:var(--gold)">⚠️ aguarda confirmação</span></div>
+    <div class="conf-card">
+      <div class="conf-check">✓</div>
+      <div class="conf-text"><strong>Empréstimo AMEX $1.802,23</strong> — pago. Registrado no Expense Ledger.</div>
     </div>
   </div>
+
+  <div class="note-box"><strong>Daqui pra frente:</strong> o acerto contínuo com o Chris é feito na aba <strong>CHRIS REPORT</strong> da planilha — você escolhe o período e ela monta o extrato automaticamente pra imprimir e mandar pra ele. Esta página fica como registro do que já foi liquidado.</div>
 
 </main>
 
-<!-- MODAL RESUMO -->
-<div class="modal-overlay" id="modalOverlay">
-  <div class="modal">
-    <button class="modal-close" onclick="closeModal()">✕</button>
-    <h2>Resumo das Respostas</h2>
-    <p class="modal-sub">Confira abaixo e escolha como enviar para a Hadassa.</p>
-    <div id="summaryContent"></div>
-    <div class="modal-actions">
-      <a id="waBtn" href="#" class="btn btn-wa" target="_blank">
-        <span class="btn-icon">📲</span> Abrir WhatsApp para enviar
-      </a>
-      <a id="emailBtn2" href="#" class="btn btn-gold">
-        <span class="btn-icon">✉️</span> Enviar por E-mail
-      </a>
-      <button type="button" class="btn btn-navy" onclick="copyAnswers()">
-        <span class="btn-icon">📋</span> Copiar Tudo
-      </button>
-      <button type="button" class="btn btn-outline" onclick="closeModal()">← Voltar e editar</button>
-    </div>
-  </div>
-</div>
-
-<div class="toast" id="toast">Copiado!</div>
-
-<script>
-  const STORAGE_KEY = 'shf_settlement_answers_v2';
-  const RECIPIENT_EMAIL = 'hadassa@ljbusinessconsulting.com';
-
-  const questions = [
-    { id:'a1', label:'P1', text:'O saldo de ~$40K bate com o que você tem na cabeça?' },
-    { id:'a2', label:'P2', text:'FRANQUIA $3.000 — está duplicada no acerto?' },
-    { id:'a3', label:'P3', text:'NIPOSUL $20.192 — já está pago ou tem saldo aberto?' },
-    { id:'a4', label:'P4', text:'Synchrony Nolasco ($4.936) e Santana ($5.778) — Chris já pagou?' },
-    { id:'a5', label:'P5', text:'Sales tax abril $1.649 — foi pago para o MA DOR?' },
-  ];
-
-  function loadAnswers() {
-    try {
-      const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
-      questions.forEach(q => {
-        const el = document.getElementById(q.id);
-        if (el && saved[q.id]) { el.value = saved[q.id]; el.classList.add('filled'); }
-      });
-    } catch(e) {}
-    updateProgress();
-  }
-
-  function saveAndUpdate() {
-    const data = {};
-    questions.forEach(q => {
-      const el = document.getElementById(q.id);
-      if (el) {
-        data[q.id] = el.value;
-        el.classList.toggle('filled', el.value.trim().length > 0);
-      }
-    });
-    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(data)); } catch(e) {}
-    updateProgress();
-    const as = document.getElementById('autosaveStatus');
-    if (as) as.textContent = 'Salvo · ' + new Date().toLocaleTimeString('pt-BR', {hour:'2-digit', minute:'2-digit'});
-  }
-
-  function updateProgress() {
-    const answered = questions.filter(q => {
-      const el = document.getElementById(q.id);
-      return el && el.value.trim().length > 0;
-    }).length;
-    document.getElementById('progressFill').style.width = (answered / questions.length * 100) + '%';
-    document.getElementById('progressPct').textContent = answered + ' / ' + questions.length;
-  }
-
-  function buildPlainText() {
-    let t = 'SHF — SETTLEMENT LEDGER · RESPOSTAS DO CLEYTON\n';
-    t += 'Enviado em: ' + new Date().toLocaleString('pt-BR') + '\n';
-    t += '='.repeat(50) + '\n\n';
-    questions.forEach(q => {
-      const el = document.getElementById(q.id);
-      const val = el ? el.value.trim() : '';
-      t += q.label + '. ' + q.text + '\n';
-      t += (val || '(não respondida)') + '\n\n';
-    });
-    return t;
-  }
-
-  function buildSummaryHTML() {
-    return questions.map(q => {
-      const el = document.getElementById(q.id);
-      const val = el ? el.value.trim() : '';
-      return `<div class="modal-q">
-        <div class="modal-qlabel">${q.label}</div>
-        <div class="modal-qtext">${q.text}</div>
-        ${val
-          ? `<div class="modal-answer">${val.replace(/&/g,'&amp;').replace(/</g,'&lt;')}</div>`
-          : `<div class="modal-empty">Não respondida</div>`}
-      </div>`;
-    }).join('');
-  }
-
-  function openModal() {
-    const plain = buildPlainText();
-    document.getElementById('summaryContent').innerHTML = buildSummaryHTML();
-
-    // WhatsApp link
-    const waText = encodeURIComponent(plain);
-    document.getElementById('waBtn').href = 'https://wa.me/?text=' + waText;
-
-    // Email link
-    const subject = encodeURIComponent('SHF Settlement · Respostas do Cleyton · ' + new Date().toLocaleDateString('pt-BR'));
-    document.getElementById('emailBtn2').href = 'mailto:' + RECIPIENT_EMAIL + '?subject=' + subject + '&body=' + encodeURIComponent(plain);
-
-    document.getElementById('modalOverlay').classList.add('open');
-    document.body.style.overflow = 'hidden';
-  }
-
-  function buildEmailLink() {
-    const plain = buildPlainText();
-    const subject = encodeURIComponent('SHF Settlement · Respostas do Cleyton · ' + new Date().toLocaleDateString('pt-BR'));
-    document.getElementById('emailBtn').href = 'mailto:' + RECIPIENT_EMAIL + '?subject=' + subject + '&body=' + encodeURIComponent(plain);
-  }
-
-  function closeModal() {
-    document.getElementById('modalOverlay').classList.remove('open');
-    document.body.style.overflow = '';
-  }
-
-  function copyAnswers() {
-    const text = buildPlainText();
-    if (navigator.clipboard) {
-      navigator.clipboard.writeText(text).then(showToast);
-    } else {
-      const ta = document.createElement('textarea');
-      ta.value = text; ta.style.cssText = 'position:fixed;opacity:0;top:0;left:0';
-      document.body.appendChild(ta); ta.select();
-      try { document.execCommand('copy'); showToast(); } catch(e) {}
-      document.body.removeChild(ta);
-    }
-  }
-
-  function showToast() {
-    const t = document.getElementById('toast');
-    t.classList.add('show');
-    setTimeout(() => t.classList.remove('show'), 2500);
-  }
-
-  function clearAnswers() {
-    if (!confirm('Apagar todas as respostas? Não é possível desfazer.')) return;
-    questions.forEach(q => {
-      const el = document.getElementById(q.id);
-      if (el) { el.value = ''; el.classList.remove('filled'); }
-    });
-    try { localStorage.removeItem(STORAGE_KEY); } catch(e) {}
-    updateProgress();
-  }
-
-  document.getElementById('modalOverlay').addEventListener('click', function(e) {
-    if (e.target === this) closeModal();
-  });
-
-  loadAnswers();
-</script>
+<footer>
+  Preparado por <strong>Hadassa · LJ Business Consulting</strong> &nbsp;·&nbsp; Acerto fechado em 30/05/2026
+</footer>
 </body>
 </html>
